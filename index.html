@@ -1,0 +1,4399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NovaTools - All In One</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+:root{
+    --bg:#080d1c;
+    --sidebar:#0d1428;
+    --card:#141d34;
+    --card2:#1b2742;
+    --text:#fff;
+    --muted:#9ca9c4;
+    --primary:#6c63ff;
+    --secondary:#00d4ff;
+    --success:#22c55e;
+    --danger:#ff4d6d;
+    --border:rgba(255,255,255,.09);
+}
+
+body{
+    min-height:100vh;
+    color:var(--text);
+    background:
+    radial-gradient(circle at 10% 10%,rgba(108,99,255,.18),transparent 30%),
+    radial-gradient(circle at 90% 90%,rgba(0,212,255,.12),transparent 30%),
+    var(--bg);
+}
+
+body.light{
+    --bg:#eef2f7;
+    --sidebar:#ffffff;
+    --card:#ffffff;
+    --card2:#edf2f8;
+    --text:#151827;
+    --muted:#65738b;
+    --border:rgba(0,0,0,.08);
+    background:#eef2f7;
+}
+
+button,input,textarea,select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.hidden{
+    display:none!important;
+}
+
+/* ================= AUTH ================= */
+
+#authScreen,
+#pinGate{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.authBox{
+    width:440px;
+    max-width:100%;
+    padding:35px;
+    border-radius:28px;
+    border:1px solid var(--border);
+    background:rgba(20,29,52,.94);
+    backdrop-filter:blur(20px);
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+}
+
+.light .authBox{
+    background:#fff;
+}
+
+.logo{
+    text-align:center;
+    font-size:32px;
+    font-weight:900;
+    margin-bottom:8px;
+}
+
+.logo span,
+.sideLogo span{
+    color:var(--primary);
+}
+
+.authSubtitle{
+    text-align:center;
+    color:var(--muted);
+    margin-bottom:25px;
+}
+
+.authTabs{
+    display:flex;
+    gap:8px;
+    margin-bottom:20px;
+}
+
+.authTabs button{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:12px;
+    color:var(--text);
+    background:var(--card2);
+}
+
+.authTabs button.active{
+    color:#fff;
+    background:var(--primary);
+}
+
+.inputGroup{
+    margin-bottom:15px;
+}
+
+.inputGroup label{
+    display:block;
+    margin-bottom:7px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+.inputGroup input,
+.inputGroup textarea,
+.inputGroup select{
+    width:100%;
+    padding:13px 14px;
+    outline:none;
+    border-radius:12px;
+    border:1px solid var(--border);
+    color:var(--text);
+    background:var(--card2);
+}
+
+.primaryBtn{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:13px;
+    color:#fff;
+    font-weight:bold;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+.demoText{
+    margin-top:15px;
+    text-align:center;
+    color:var(--muted);
+    font-size:12px;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    width:250px;
+    padding:22px;
+    z-index:20;
+    background:var(--sidebar);
+    border-right:1px solid var(--border);
+}
+
+.sideLogo{
+    margin-bottom:30px;
+    font-size:24px;
+    font-weight:900;
+}
+
+.nav{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.nav button{
+    padding:13px;
+    text-align:left;
+    border:none;
+    border-radius:12px;
+    color:var(--muted);
+    background:transparent;
+}
+
+.nav button:hover,
+.nav button.active{
+    color:#fff;
+    background:var(--primary);
+}
+
+.profileMini{
+    position:absolute;
+    left:18px;
+    right:18px;
+    bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:11px;
+    border-radius:15px;
+    background:var(--card2);
+}
+
+.avatar{
+    width:42px;
+    height:42px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+    border-radius:50%;
+    color:#fff;
+    font-weight:bold;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+.profileInfo{
+    overflow:hidden;
+}
+
+.profileInfo strong{
+    display:block;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.profileInfo small{
+    color:var(--muted);
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:250px;
+    padding:25px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.searchBox{
+    width:100%;
+    max-width:520px;
+}
+
+.searchBox input{
+    width:100%;
+    padding:14px 18px;
+    outline:none;
+    border-radius:15px;
+    border:1px solid var(--border);
+    color:var(--text);
+    background:var(--card);
+}
+
+.topActions{
+    display:flex;
+    gap:8px;
+}
+
+.iconBtn{
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:13px;
+    color:var(--text);
+    background:var(--card);
+    border:1px solid var(--border);
+}
+
+/* ================= PAGE ================= */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+.hero{
+    padding:30px;
+    margin-bottom:22px;
+    border-radius:25px;
+    border:1px solid var(--border);
+    background:
+    linear-gradient(135deg,rgba(108,99,255,.28),rgba(0,212,255,.08)),
+    var(--card);
+}
+
+.hero h1{
+    margin-bottom:8px;
+    font-size:32px;
+}
+
+.hero p{
+    color:var(--muted);
+}
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+    margin-bottom:22px;
+}
+
+.stat{
+    padding:20px;
+    border-radius:20px;
+    background:var(--card);
+    border:1px solid var(--border);
+}
+
+.statIcon{
+    margin-bottom:8px;
+    font-size:28px;
+}
+
+.stat h3{
+    font-size:26px;
+}
+
+.stat p{
+    margin-top:5px;
+    color:var(--muted);
+}
+
+.sectionTitle{
+    margin:25px 0 15px;
+}
+
+.toolGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(175px,1fr));
+    gap:15px;
+}
+
+.toolCard{
+    min-height:150px;
+    padding:20px;
+    border-radius:20px;
+    cursor:pointer;
+    background:var(--card);
+    border:1px solid var(--border);
+    transition:.2s;
+}
+
+.toolCard:hover{
+    transform:translateY(-5px);
+    border-color:var(--primary);
+}
+
+.toolIcon{
+    margin-bottom:12px;
+    font-size:35px;
+}
+
+.toolCard h3{
+    margin-bottom:6px;
+}
+
+.toolCard p{
+    color:var(--muted);
+    font-size:13px;
+}
+
+.panel{
+    padding:22px;
+    margin-bottom:18px;
+    border-radius:22px;
+    background:var(--card);
+    border:1px solid var(--border);
+}
+
+.panelHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+}
+
+.smallBtn{
+    padding:10px 14px;
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    background:var(--primary);
+}
+
+.dangerBtn{
+    background:var(--danger)!important;
+}
+
+/* ================= TODO ================= */
+
+.todoInput{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
+
+.todoInput input{
+    flex:1;
+    padding:13px;
+    border-radius:12px;
+    outline:none;
+    border:1px solid var(--border);
+    color:var(--text);
+    background:var(--card2);
+}
+
+.todoItem{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    padding:12px;
+    margin-bottom:8px;
+    border-radius:12px;
+    background:var(--card2);
+}
+
+.todoItem.done span{
+    opacity:.5;
+    text-decoration:line-through;
+}
+
+/* ================= NOTES ================= */
+
+.notesGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+    gap:15px;
+}
+
+.note{
+    padding:18px;
+    border-radius:16px;
+    background:var(--card2);
+}
+
+.note h3{
+    margin-bottom:8px;
+}
+
+.note p{
+    white-space:pre-wrap;
+    color:var(--muted);
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    background:rgba(0,0,0,.7);
+}
+
+.modalBox{
+    width:520px;
+    max-width:100%;
+    max-height:90vh;
+    overflow:auto;
+    padding:25px;
+    border-radius:22px;
+    background:var(--card);
+    border:1px solid var(--border);
+}
+
+.modalHeader{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:20px;
+}
+
+.close{
+    border:none;
+    color:var(--text);
+    background:transparent;
+    font-size:28px;
+}
+
+/* ================= CALCULATOR ================= */
+
+.calcDisplay{
+    width:100%;
+    padding:20px;
+    margin-bottom:10px;
+    text-align:right;
+    font-size:28px;
+    outline:none;
+    border-radius:15px;
+    border:1px solid var(--border);
+    color:var(--text);
+    background:var(--card2);
+}
+
+.calcGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:8px;
+}
+
+.calcGrid button{
+    padding:18px 10px;
+    border:none;
+    border-radius:12px;
+    color:var(--text);
+    background:var(--card2);
+}
+
+.calcGrid button:hover{
+    background:var(--primary);
+}
+
+/* ================= TIMER ================= */
+
+.timerDisplay{
+    margin:25px;
+    text-align:center;
+    font-size:60px;
+    font-weight:bold;
+}
+
+.timerButtons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+/* ================= PIN ================= */
+
+.pinScreen{
+    max-width:450px;
+    margin:auto;
+    text-align:center;
+}
+
+.lockIcon{
+    margin-bottom:15px;
+    font-size:75px;
+}
+
+.pinInput{
+    text-align:center;
+    font-size:25px!important;
+    letter-spacing:10px;
+}
+
+/* ================= NOTIFICATION ================= */
+
+.notification{
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:13px;
+    background:var(--card2);
+    border-left:4px solid var(--primary);
+}
+
+.notification small{
+    color:var(--muted);
+}
+
+/* ================= PROFILE ================= */
+
+.profileCard{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+    border-radius:20px;
+    background:var(--card2);
+}
+
+.bigAvatar{
+    width:90px;
+    height:90px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    color:#fff;
+    font-size:30px;
+    font-weight:bold;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+}
+
+/* ================= CLOCK ================= */
+
+.clock{
+    padding:30px;
+    text-align:center;
+    font-size:50px;
+    font-weight:bold;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:900px){
+
+    .sidebar{
+        width:70px;
+        padding:12px;
+    }
+
+    .sideLogo{
+        text-align:center;
+        font-size:0;
+    }
+
+    .sideLogo::after{
+        content:"N";
+        color:var(--primary);
+        font-size:25px;
+    }
+
+    .nav button{
+        padding:13px 5px;
+        text-align:center;
+        font-size:0;
+    }
+
+    .nav button::first-letter{
+        font-size:20px;
+    }
+
+    .profileMini{
+        left:8px;
+        right:8px;
+        padding:7px;
+    }
+
+    .profileInfo{
+        display:none;
+    }
+
+    .main{
+        margin-left:70px;
+    }
+
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .main{
+        padding:14px;
+    }
+
+    .topbar{
+        flex-wrap:wrap;
+    }
+
+    .searchBox{
+        order:2;
+        flex-basis:100%;
+    }
+
+    .hero h1{
+        font-size:25px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .toolGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .toolCard{
+        padding:14px;
+    }
+
+    .profileCard{
+        flex-direction:column;
+        text-align:center;
+    }
+
+    .timerDisplay{
+        font-size:45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     AUTH SCREEN
+===================================================== -->
+
+<div id="authScreen">
+
+    <div class="authBox">
+
+        <div class="logo">
+            Nova<span>Tools</span>
+        </div>
+
+        <div class="authSubtitle">
+            Modern All-In-One Dashboard
+        </div>
+
+        <div class="authTabs">
+
+            <button
+            id="loginTab"
+            class="active"
+            onclick="showLogin()">
+                Login
+            </button>
+
+            <button
+            id="signupTab"
+            onclick="showSignup()">
+                Sign Up
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <form id="loginForm"
+        onsubmit="event.preventDefault();login();">
+
+            <div class="inputGroup">
+
+                <label>Username</label>
+
+                <input
+                id="loginUser"
+                name="username"
+                autocomplete="username"
+                required
+                placeholder="Enter username">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Password</label>
+
+                <input
+                id="loginPass"
+                name="password"
+                type="password"
+                autocomplete="current-password"
+                required
+                placeholder="Enter password">
+
+            </div>
+
+
+            <button class="primaryBtn">
+                🔐 Login
+            </button>
+
+        </form>
+
+
+        <!-- SIGNUP -->
+
+        <form id="signupForm"
+        class="hidden"
+        onsubmit="event.preventDefault();signup();">
+
+            <div class="inputGroup">
+
+                <label>Username</label>
+
+                <input
+                id="signupUser"
+                name="new-username"
+                autocomplete="username"
+                required
+                minlength="3"
+                placeholder="Create username">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Password</label>
+
+                <input
+                id="signupPass"
+                name="new-password"
+                type="password"
+                autocomplete="new-password"
+                required
+                minlength="4"
+                placeholder="Create password">
+
+            </div>
+
+
+            <div class="inputGroup">
+
+                <label>Confirm Password</label>
+
+                <input
+                id="signupConfirm"
+                type="password"
+                autocomplete="new-password"
+                required
+                minlength="4"
+                placeholder="Confirm password">
+
+            </div>
+
+
+            <button class="primaryBtn">
+                ✨ Create Account
+            </button>
+
+        </form>
+
+
+        <div class="demoText">
+            First time here? Create an account.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PIN GATE
+===================================================== -->
+
+<div id="pinGate" class="hidden">
+
+    <div class="authBox pinScreen">
+
+        <div class="lockIcon">
+            🔒
+        </div>
+
+        <h1>
+            PIN Required
+        </h1>
+
+        <p style="color:var(--muted);margin:10px 0 25px;">
+            Enter your PIN to open NovaTools.
+        </p>
+
+
+        <form
+        onsubmit="event.preventDefault();unlockWithPIN();">
+
+            <div class="inputGroup">
+
+                <input
+                id="gatePin"
+                class="pinInput"
+                type="password"
+                inputmode="numeric"
+                maxlength="6"
+                autocomplete="off"
+                required
+                placeholder="••••">
+
+            </div>
+
+
+            <button class="primaryBtn">
+                🔓 Unlock Dashboard
+            </button>
+
+        </form>
+
+
+        <button
+        class="smallBtn dangerBtn"
+        style="width:100%;margin-top:12px;"
+        onclick="backToLogin()">
+
+            Logout
+
+        </button>
+
+        <p
+        id="pinError"
+        style="color:var(--danger);margin-top:15px;">
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     APP
+===================================================== -->
+
+<div id="app" class="hidden">
+
+    <aside class="sidebar">
+
+        <div class="sideLogo">
+            Nova<span>Tools</span>
+        </div>
+
+
+        <div class="nav">
+
+            <button
+            class="active"
+            onclick="openPage('dashboard',this)">
+                🏠 Dashboard
+            </button>
+
+            <button onclick="openPage('tools',this)">
+                🛠️ Tools
+            </button>
+
+            <button onclick="openPage('todo',this)">
+                ✅ To-Do
+            </button>
+
+            <button onclick="openPage('notes',this)">
+                📝 Notes
+            </button>
+
+            <button onclick="openPage('study',this)">
+                📚 Study
+            </button>
+
+            <button onclick="openPage('pin',this)">
+                🔒 PIN Lock
+            </button>
+
+            <button onclick="openPage('notifications',this)">
+                🔔 Notifications
+            </button>
+
+            <button onclick="openPage('profile',this)">
+                👤 Profile
+            </button>
+
+            <button onclick="openPage('settings',this)">
+                ⚙️ Settings
+            </button>
+
+        </div>
+
+
+        <div class="profileMini">
+
+            <div
+            class="avatar"
+            id="miniAvatar">
+                U
+            </div>
+
+            <div class="profileInfo">
+
+                <strong id="miniName">
+                    User
+                </strong>
+
+                <small>
+                    Local Account
+                </small>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <div class="topbar">
+
+            <div class="searchBox">
+
+                <input
+                id="globalSearch"
+                placeholder="🔎 Search tools..."
+                oninput="globalSearch()">
+
+            </div>
+
+
+            <div class="topActions">
+
+                <button
+                class="iconBtn"
+                onclick="toggleTheme()">
+                    🌙
+                </button>
+
+                <button
+                class="iconBtn"
+                onclick="openPageByName('notifications')">
+                    🔔
+                </button>
+
+                <button
+                class="iconBtn"
+                onclick="openPageByName('profile')">
+                    👤
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             DASHBOARD
+        ================================================= -->
+
+        <section
+        id="dashboard"
+        class="page active">
+
+            <div class="hero">
+
+                <h1>
+                    Welcome back,
+                    <span id="welcomeName">
+                        User
+                    </span>
+                    👋
+                </h1>
+
+                <p>
+                    Your personal all-in-one tool dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="statIcon">🛠️</div>
+                    <h3>20+</h3>
+                    <p>Tools</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">📝</div>
+                    <h3 id="noteCount">0</h3>
+                    <p>Notes</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">✅</div>
+                    <h3 id="taskCount">0</h3>
+                    <p>Tasks</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">🔥</div>
+                    <h3>1</h3>
+                    <p>Streak</p>
+                </div>
+
+            </div>
+
+
+            <h2 class="sectionTitle">
+                ⚡ Quick Tools
+            </h2>
+
+
+            <div class="toolGrid">
+
+                <div
+                class="toolCard"
+                onclick="openPageByName('todo')">
+
+                    <div class="toolIcon">✅</div>
+
+                    <h3>To-Do</h3>
+
+                    <p>
+                        Manage tasks
+                    </p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                onclick="openPageByName('notes')">
+
+                    <div class="toolIcon">📝</div>
+
+                    <h3>Notes</h3>
+
+                    <p>
+                        Save notes
+                    </p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                onclick="openTool('calculator')">
+
+                    <div class="toolIcon">🧮</div>
+
+                    <h3>Calculator</h3>
+
+                    <p>
+                        Calculate numbers
+                    </p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                onclick="openPageByName('pin')">
+
+                    <div class="toolIcon">🔒</div>
+
+                    <h3>PIN Lock</h3>
+
+                    <p>
+                        Protect dashboard
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ALL TOOLS
+        ================================================= -->
+
+        <section id="tools" class="page">
+
+            <h1>🛠️ All Tools</h1>
+
+            <p style="color:var(--muted);margin:8px 0 20px;">
+                Everything in one place.
+            </p>
+
+
+            <div
+            class="toolGrid"
+            id="allTools">
+
+
+                <div
+                class="toolCard"
+                data-name="calculator"
+                onclick="openTool('calculator')">
+
+                    <div class="toolIcon">🧮</div>
+                    <h3>Calculator</h3>
+                    <p>Basic calculator</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="stopwatch"
+                onclick="openTool('stopwatch')">
+
+                    <div class="toolIcon">⏱️</div>
+                    <h3>Stopwatch</h3>
+                    <p>Track time</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="timer countdown"
+                onclick="openTool('timer')">
+
+                    <div class="toolIcon">⏳</div>
+                    <h3>Timer</h3>
+                    <p>Countdown timer</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="calendar"
+                onclick="openTool('calendar')">
+
+                    <div class="toolIcon">📅</div>
+                    <h3>Calendar</h3>
+                    <p>View calendar</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="unit converter"
+                onclick="openTool('converter')">
+
+                    <div class="toolIcon">📏</div>
+                    <h3>Unit Converter</h3>
+                    <p>Convert units</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="password generator"
+                onclick="openTool('password')">
+
+                    <div class="toolIcon">🔑</div>
+                    <h3>Password Generator</h3>
+                    <p>Generate passwords</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="random generator"
+                onclick="openTool('random')">
+
+                    <div class="toolIcon">🎲</div>
+                    <h3>Random Generator</h3>
+                    <p>Random number</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="pomodoro study"
+                onclick="openTool('pomodoro')">
+
+                    <div class="toolIcon">🍅</div>
+                    <h3>Pomodoro</h3>
+                    <p>Study timer</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="qr generator"
+                onclick="openTool('qr')">
+
+                    <div class="toolIcon">🔳</div>
+                    <h3>QR Generator</h3>
+                    <p>QR tool</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="color picker"
+                onclick="openTool('color')">
+
+                    <div class="toolIcon">🎨</div>
+                    <h3>Color Picker</h3>
+                    <p>Choose colors</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="text counter"
+                onclick="openTool('text')">
+
+                    <div class="toolIcon">🔤</div>
+                    <h3>Text Counter</h3>
+                    <p>Count text</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="age calculator"
+                onclick="openTool('age')">
+
+                    <div class="toolIcon">🎂</div>
+                    <h3>Age Calculator</h3>
+                    <p>Calculate age</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="digital clock"
+                onclick="openTool('clock')">
+
+                    <div class="toolIcon">🕐</div>
+                    <h3>Digital Clock</h3>
+                    <p>Live time</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="notes"
+                onclick="openPageByName('notes')">
+
+                    <div class="toolIcon">📝</div>
+                    <h3>Notes</h3>
+                    <p>Personal notes</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="todo task manager"
+                onclick="openPageByName('todo')">
+
+                    <div class="toolIcon">✅</div>
+                    <h3>To-Do Manager</h3>
+                    <p>Manage tasks</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="study planner"
+                onclick="openPageByName('study')">
+
+                    <div class="toolIcon">🎓</div>
+                    <h3>Study Planner</h3>
+                    <p>Plan study</p>
+
+                </div>
+
+
+                <div
+                class="toolCard"
+                data-name="pin security"
+                onclick="openPageByName('pin')">
+
+                    <div class="toolIcon">🔒</div>
+                    <h3>PIN Lock</h3>
+                    <p>Dashboard security</p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             TODO
+        ================================================= -->
+
+        <section id="todo" class="page">
+
+            <h1>✅ To-Do List</h1>
+
+            <br>
+
+            <div class="panel">
+
+                <div class="todoInput">
+
+                    <input
+                    id="todoInput"
+                    placeholder="Add a task..."
+                    onkeydown="if(event.key==='Enter')addTodo()">
+
+                    <button
+                    class="smallBtn"
+                    onclick="addTodo()">
+                        Add
+                    </button>
+
+                </div>
+
+                <div id="todoList"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTES
+        ================================================= -->
+
+        <section id="notes" class="page">
+
+            <h1>📝 My Notes</h1>
+
+            <br>
+
+            <div class="panel">
+
+                <div class="inputGroup">
+
+                    <label>
+                        Note Title
+                    </label>
+
+                    <input
+                    id="noteTitle"
+                    placeholder="Example: Science">
+
+                </div>
+
+
+                <div class="inputGroup">
+
+                    <label>
+                        Note
+                    </label>
+
+                    <textarea
+                    id="noteText"
+                    rows="5"
+                    placeholder="Write your note...">
+                    </textarea>
+
+                </div>
+
+
+                <button
+                class="smallBtn"
+                onclick="addNote()">
+                    Save Note
+                </button>
+
+            </div>
+
+
+            <div
+            id="notesList"
+            class="notesGrid">
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             STUDY
+        ================================================= -->
+
+        <section id="study" class="page">
+
+            <h1>📚 Study Center</h1>
+
+            <br>
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="statIcon">📖</div>
+                    <h3>0</h3>
+                    <p>Chapters</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">📝</div>
+                    <h3>0</h3>
+                    <p>Questions</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">⏱️</div>
+                    <h3>0m</h3>
+                    <p>Study Time</p>
+                </div>
+
+                <div class="stat">
+                    <div class="statIcon">🏆</div>
+                    <h3>0</h3>
+                    <p>Points</p>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h2>
+                    🎯 Today's Goal
+                </h2>
+
+                <p
+                style="color:var(--muted);margin:10px 0;">
+                    Complete your daily study goal.
+                </p>
+
+                <progress
+                value="35"
+                max="100"
+                style="width:100%;height:20px;">
+                </progress>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PIN
+        ================================================= -->
+
+        <section id="pin" class="page">
+
+            <h1>🔒 PIN Lock</h1>
+
+            <br>
+
+            <div class="panel pinScreen">
+
+                <div class="lockIcon">
+                    🔐
+                </div>
+
+                <h2>
+                    Dashboard PIN
+                </h2>
+
+                <p
+                style="color:var(--muted);margin:10px 0 20px;">
+                    Create or change your 4-6 digit PIN.
+                </p>
+
+
+                <div class="inputGroup">
+
+                    <input
+                    id="newPin"
+                    class="pinInput"
+                    type="password"
+                    inputmode="numeric"
+                    maxlength="6"
+                    placeholder="••••">
+
+                </div>
+
+
+                <button
+                class="primaryBtn"
+                onclick="savePIN()">
+                    🔒 Save / Change PIN
+                </button>
+
+
+                <br><br>
+
+
+                <button
+                class="smallBtn dangerBtn"
+                style="width:100%;"
+                onclick="removePIN()">
+                    Remove PIN
+                </button>
+
+
+                <p
+                id="pinStatus"
+                style="margin-top:18px;color:var(--muted);">
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             NOTIFICATIONS
+        ================================================= -->
+
+        <section
+        id="notifications"
+        class="page">
+
+            <h1>🔔 Notifications</h1>
+
+            <br>
+
+            <div class="panel">
+
+                <div class="notification">
+
+                    <strong>
+                        👋 Welcome!
+                    </strong>
+
+                    <p>
+                        Your NovaTools dashboard is ready.
+                    </p>
+
+                    <small>
+                        Just now
+                    </small>
+
+                </div>
+
+
+                <div class="notification">
+
+                    <strong>
+                        🔒 Security
+                    </strong>
+
+                    <p>
+                        PIN Lock is available in your settings.
+                    </p>
+
+                    <small>
+                        Today
+                    </small>
+
+                </div>
+
+
+                <div class="notification">
+
+                    <strong>
+                        💡 Tip
+                    </strong>
+
+                    <p>
+                        Use the search bar to find tools quickly.
+                    </p>
+
+                    <small>
+                        Today
+                    </small>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PROFILE
+        ================================================= -->
+
+        <section id="profile" class="page">
+
+            <h1>👤 User Profile</h1>
+
+            <br>
+
+            <div class="panel">
+
+                <div class="profileCard">
+
+                    <div
+                    class="bigAvatar"
+                    id="bigAvatar">
+                        U
+                    </div>
+
+                    <div>
+
+                        <h2 id="profileName">
+                            User
+                        </h2>
+
+                        <p style="color:var(--muted);">
+                            Local Account
+                        </p>
+
+                        <p style="margin-top:8px;">
+                            ⭐ 0 Points
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <div class="inputGroup">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                    id="profileUsername">
+
+                </div>
+
+
+                <button
+                class="smallBtn"
+                onclick="saveProfile()">
+                    Save Profile
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SETTINGS
+        ================================================= -->
+
+        <section id="settings" class="page">
+
+            <h1>⚙️ Settings</h1>
+
+            <br>
+
+
+            <div class="panel">
+
+                <h3>
+                    🎨 Appearance
+                </h3>
+
+                <br>
+
+                <button
+                class="smallBtn"
+                onclick="toggleTheme()">
+                    🌙 Toggle Dark / Light
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>
+                    🔐 Security
+                </h3>
+
+                <br>
+
+                <button
+                class="smallBtn"
+                onclick="openPageByName('pin')">
+                    🔒 Manage PIN
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>
+                    🚪 Account
+                </h3>
+
+                <br>
+
+                <button
+                class="smallBtn dangerBtn"
+                onclick="logout()">
+                    Logout
+                </button>
+
+            </div>
+
+
+            <div class="panel">
+
+                <h3>
+                    🗑️ Data
+                </h3>
+
+                <br>
+
+                <button
+                class="smallBtn dangerBtn"
+                onclick="clearAllData()">
+                    Clear Local Data
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- =====================================================
+     TOOL MODAL
+===================================================== -->
+
+<div
+id="toolModal"
+class="modal hidden">
+
+    <div class="modalBox">
+
+        <div class="modalHeader">
+
+            <h2 id="modalTitle">
+                Tool
+            </h2>
+
+            <button
+            class="close"
+            onclick="closeTool()">
+                ×
+            </button>
+
+        </div>
+
+        <div id="modalContent"></div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   GLOBAL ACCOUNT STATE
+===================================================== */
+
+let currentUser = null;
+
+
+/* =====================================================
+   USER DATABASE
+===================================================== */
+
+function getUsers(){
+
+    return JSON.parse(
+        localStorage.getItem("nova_users") || "{}"
+    );
+}
+
+
+function saveUsers(users){
+
+    localStorage.setItem(
+        "nova_users",
+        JSON.stringify(users)
+    );
+}
+
+
+function getData(){
+
+    const users = getUsers();
+
+    return users[currentUser];
+}
+
+
+function updateData(data){
+
+    const users = getUsers();
+
+    users[currentUser] = data;
+
+    saveUsers(users);
+}
+
+
+/* =====================================================
+   AUTH UI
+===================================================== */
+
+function showLogin(){
+
+    document
+    .getElementById("loginForm")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("signupForm")
+    .classList.add("hidden");
+
+    document
+    .getElementById("loginTab")
+    .classList.add("active");
+
+    document
+    .getElementById("signupTab")
+    .classList.remove("active");
+}
+
+
+function showSignup(){
+
+    document
+    .getElementById("loginForm")
+    .classList.add("hidden");
+
+    document
+    .getElementById("signupForm")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("loginTab")
+    .classList.remove("active");
+
+    document
+    .getElementById("signupTab")
+    .classList.add("active");
+}
+
+
+/* =====================================================
+   SIGNUP
+===================================================== */
+
+function signup(){
+
+    const username =
+        document
+        .getElementById("signupUser")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("signupPass")
+        .value;
+
+    const confirm =
+        document
+        .getElementById("signupConfirm")
+        .value;
+
+
+    if(username.length < 3){
+
+        alert("Username must be at least 3 characters.");
+
+        return;
+    }
+
+
+    if(password.length < 4){
+
+        alert("Password must be at least 4 characters.");
+
+        return;
+    }
+
+
+    if(password !== confirm){
+
+        alert("Passwords do not match.");
+
+        return;
+    }
+
+
+    const users = getUsers();
+
+
+    if(users[username]){
+
+        alert("❌ Username already exists.");
+
+        return;
+    }
+
+
+    users[username] = {
+
+        password:password,
+
+        notes:[],
+
+        todos:[],
+
+        created:new Date().toISOString()
+
+    };
+
+
+    saveUsers(users);
+
+
+    /*
+       IMPORTANT:
+       New account does NOT automatically bypass
+       the authentication flow.
+       We send the user to Login.
+    */
+
+    alert(
+        "✅ Account created successfully!\n\nPlease login with your new account."
+    );
+
+
+    document
+    .getElementById("loginUser")
+    .value = username;
+
+    document
+    .getElementById("loginPass")
+    .value = "";
+
+    showLogin();
+
+}
+
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+function login(){
+
+    const username =
+        document
+        .getElementById("loginUser")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("loginPass")
+        .value;
+
+
+    const users = getUsers();
+
+
+    if(!users[username]){
+
+        alert(
+            "❌ Account not found.\nPlease Sign Up first."
+        );
+
+        return;
+    }
+
+
+    if(users[username].password !== password){
+
+        alert("❌ Incorrect password.");
+
+        return;
+    }
+
+
+    currentUser = username;
+
+
+    /*
+       Create temporary login session.
+       This is NOT treated as a secure authentication
+       mechanism for a real production website.
+    */
+
+    sessionStorage.setItem(
+        "nova_logged_in",
+        "true"
+    );
+
+
+    /*
+       If PIN exists:
+       Login -> PIN
+    */
+
+    if(getPIN()){
+
+        showPINTGate();
+
+    }else{
+
+        showDashboard();
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOW PIN GATE
+===================================================== */
+
+function showPINTGate(){
+
+    document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+
+    document
+    .getElementById("app")
+    .classList.add("hidden");
+
+    document
+    .getElementById("pinGate")
+    .classList.remove("hidden");
+
+    document
+    .getElementById("gatePin")
+    .value = "";
+
+    document
+    .getElementById("pinError")
+    .textContent = "";
+
+    setTimeout(()=>{
+
+        document
+        .getElementById("gatePin")
+        .focus();
+
+    },100);
+
+}
+
+
+/* =====================================================
+   PIN UNLOCK
+===================================================== */
+
+function unlockWithPIN(){
+
+    const entered =
+        document
+        .getElementById("gatePin")
+        .value
+        .trim();
+
+    const correct = getPIN();
+
+
+    if(!correct){
+
+        showDashboard();
+
+        return;
+    }
+
+
+    if(entered !== correct){
+
+        document
+        .getElementById("pinError")
+        .textContent =
+        "❌ Incorrect PIN.";
+
+        document
+        .getElementById("gatePin")
+        .value = "";
+
+        return;
+    }
+
+
+    showDashboard();
+
+}
+
+
+/* =====================================================
+   SHOW DASHBOARD
+===================================================== */
+
+function showDashboard(){
+
+    document
+    .getElementById("authScreen")
+    .classList.add("hidden");
+
+    document
+    .getElementById("pinGate")
+    .classList.add("hidden");
+
+    document
+    .getElementById("app")
+    .classList.remove("hidden");
+
+
+    updateUserUI();
+
+    loadNotes();
+
+    loadTodos();
+
+    updatePINStatus();
+
+}
+
+
+/* =====================================================
+   BACK TO LOGIN
+===================================================== */
+
+function backToLogin(){
+
+    currentUser = null;
+
+    sessionStorage.removeItem(
+        "nova_logged_in"
+    );
+
+
+    document
+    .getElementById("pinGate")
+    .classList.add("hidden");
+
+    document
+    .getElementById("app")
+    .classList.add("hidden");
+
+    document
+    .getElementById("authScreen")
+    .classList.remove("hidden");
+
+    showLogin();
+
+}
+
+
+/* =====================================================
+   LOGOUT
+===================================================== */
+
+function logout(){
+
+    currentUser = null;
+
+    sessionStorage.removeItem(
+        "nova_logged_in"
+    );
+
+
+    document
+    .getElementById("app")
+    .classList.add("hidden");
+
+    document
+    .getElementById("pinGate")
+    .classList.add("hidden");
+
+    document
+    .getElementById("authScreen")
+    .classList.remove("hidden");
+
+
+    document
+    .getElementById("loginUser")
+    .value = "";
+
+    document
+    .getElementById("loginPass")
+    .value = "";
+
+    showLogin();
+
+}
+
+
+/* =====================================================
+   USER UI
+===================================================== */
+
+function updateUserUI(){
+
+    if(!currentUser)return;
+
+
+    document
+    .getElementById("welcomeName")
+    .textContent = currentUser;
+
+
+    document
+    .getElementById("miniName")
+    .textContent = currentUser;
+
+
+    document
+    .getElementById("profileName")
+    .textContent = currentUser;
+
+
+    document
+    .getElementById("profileUsername")
+    .value = currentUser;
+
+
+    const letter =
+        currentUser
+        .charAt(0)
+        .toUpperCase();
+
+
+    document
+    .getElementById("miniAvatar")
+    .textContent = letter;
+
+
+    document
+    .getElementById("bigAvatar")
+    .textContent = letter;
+
+}
+
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+function saveProfile(){
+
+    const newName =
+        document
+        .getElementById("profileUsername")
+        .value
+        .trim();
+
+
+    if(newName.length < 3){
+
+        alert("Username must be at least 3 characters.");
+
+        return;
+    }
+
+
+    const users = getUsers();
+
+
+    if(
+        newName !== currentUser &&
+        users[newName]
+    ){
+
+        alert("Username already exists.");
+
+        return;
+    }
+
+
+    if(newName === currentUser){
+
+        alert("Profile saved.");
+
+        return;
+    }
+
+
+    const data = users[currentUser];
+
+
+    delete users[currentUser];
+
+    users[newName] = data;
+
+    saveUsers(users);
+
+
+    /*
+       Update PIN key if username changes.
+    */
+
+    const pins = JSON.parse(
+        localStorage.getItem("nova_pins") || "{}"
+    );
+
+
+    if(pins[currentUser]){
+
+        pins[newName] = pins[currentUser];
+
+        delete pins[currentUser];
+
+        localStorage.setItem(
+            "nova_pins",
+            JSON.stringify(pins)
+        );
+
+    }
+
+
+    currentUser = newName;
+
+    updateUserUI();
+
+    alert("✅ Profile updated.");
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function openPage(page,button){
+
+    document
+    .querySelectorAll(".page")
+    .forEach(p=>{
+        p.classList.remove("active");
+    });
+
+
+    const target =
+        document.getElementById(page);
+
+
+    if(target){
+        target.classList.add("active");
+    }
+
+
+    document
+    .querySelectorAll(".nav button")
+    .forEach(b=>{
+        b.classList.remove("active");
+    });
+
+
+    if(button){
+        button.classList.add("active");
+    }
+
+
+    if(page === "pin"){
+        updatePINStatus();
+    }
+
+}
+
+
+function openPageByName(page){
+
+    const buttons =
+        [...document.querySelectorAll(".nav button")];
+
+
+    const button =
+        buttons.find(b=>{
+
+            const onclick =
+                b.getAttribute("onclick") || "";
+
+            return onclick.includes(
+                "'" + page + "'"
+            );
+
+        });
+
+
+    openPage(page,button);
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function toggleTheme(){
+
+    document
+    .body
+    .classList
+    .toggle("light");
+
+
+    localStorage.setItem(
+        "nova_theme",
+        document.body.classList.contains("light")
+        ? "light"
+        : "dark"
+    );
+
+}
+
+
+if(
+    localStorage.getItem("nova_theme")
+    === "light"
+){
+
+    document.body.classList.add("light");
+
+}
+
+
+/* =====================================================
+   PIN SYSTEM
+===================================================== */
+
+function getPIN(){
+
+    const pins =
+        JSON.parse(
+            localStorage.getItem("nova_pins")
+            || "{}"
+        );
+
+
+    return pins[currentUser] || null;
+
+}
+
+
+function savePIN(){
+
+    const pin =
+        document
+        .getElementById("newPin")
+        .value
+        .trim();
+
+
+    if(!/^\d{4,6}$/.test(pin)){
+
+        alert(
+            "PIN must contain 4 to 6 digits."
+        );
+
+        return;
+    }
+
+
+    const pins =
+        JSON.parse(
+            localStorage.getItem("nova_pins")
+            || "{}"
+        );
+
+
+    pins[currentUser] = pin;
+
+
+    localStorage.setItem(
+        "nova_pins",
+        JSON.stringify(pins)
+    );
+
+
+    document
+    .getElementById("newPin")
+    .value = "";
+
+
+    updatePINStatus();
+
+
+    alert(
+        "🔒 PIN saved successfully!"
+    );
+
+}
+
+
+function removePIN(){
+
+    const pins =
+        JSON.parse(
+            localStorage.getItem("nova_pins")
+            || "{}"
+        );
+
+
+    if(!pins[currentUser]){
+
+        alert("No PIN is currently set.");
+
+        return;
+    }
+
+
+    const confirmRemove =
+        confirm(
+            "Remove PIN protection?"
+        );
+
+
+    if(!confirmRemove)return;
+
+
+    delete pins[currentUser];
+
+
+    localStorage.setItem(
+        "nova_pins",
+        JSON.stringify(pins)
+    );
+
+
+    updatePINStatus();
+
+
+    alert(
+        "🔓 PIN protection removed."
+    );
+
+}
+
+
+function updatePINStatus(){
+
+    const status =
+        document.getElementById("pinStatus");
+
+
+    if(!status)return;
+
+
+    if(getPIN()){
+
+        status.innerHTML =
+        "🔒 <b>PIN Lock is enabled.</b>";
+
+    }else{
+
+        status.innerHTML =
+        "🔓 PIN Lock is disabled.";
+
+    }
+
+}
+
+
+/* =====================================================
+   NOTES
+===================================================== */
+
+function addNote(){
+
+    const title =
+        document
+        .getElementById("noteTitle")
+        .value
+        .trim();
+
+
+    const text =
+        document
+        .getElementById("noteText")
+        .value
+        .trim();
+
+
+    if(!title || !text){
+
+        alert(
+            "Please enter title and note."
+        );
+
+        return;
+    }
+
+
+    const data = getData();
+
+
+    data.notes.push({
+
+        title:title,
+
+        text:text,
+
+        date:new Date().toLocaleString()
+
+    });
+
+
+    updateData(data);
+
+
+    document
+    .getElementById("noteTitle")
+    .value = "";
+
+    document
+    .getElementById("noteText")
+    .value = "";
+
+
+    loadNotes();
+
+}
+
+
+function loadNotes(){
+
+    if(!currentUser)return;
+
+
+    const data = getData();
+
+    const list =
+        document.getElementById("notesList");
+
+
+    list.innerHTML = "";
+
+
+    data.notes.forEach((note,index)=>{
+
+        list.innerHTML += `
+
+        <div class="note">
+
+            <h3>
+                ${escapeHTML(note.title)}
+            </h3>
+
+            <p>
+                ${escapeHTML(note.text)}
+            </p>
+
+            <br>
+
+            <small style="color:var(--muted)">
+                ${note.date}
+            </small>
+
+            <br><br>
+
+            <button
+            class="smallBtn dangerBtn"
+            onclick="deleteNote(${index})">
+
+                Delete
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document
+    .getElementById("noteCount")
+    .textContent = data.notes.length;
+
+}
+
+
+function deleteNote(index){
+
+    const data = getData();
+
+
+    data.notes.splice(index,1);
+
+
+    updateData(data);
+
+
+    loadNotes();
+
+}
+
+
+/* =====================================================
+   TODO
+===================================================== */
+
+function addTodo(){
+
+    const input =
+        document.getElementById("todoInput");
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text)return;
+
+
+    const data = getData();
+
+
+    data.todos.push({
+
+        text:text,
+
+        done:false
+
+    });
+
+
+    updateData(data);
+
+
+    input.value = "";
+
+
+    loadTodos();
+
+}
+
+
+function loadTodos(){
+
+    if(!currentUser)return;
+
+
+    const data = getData();
+
+    const list =
+        document.getElementById("todoList");
+
+
+    list.innerHTML = "";
+
+
+    data.todos.forEach((todo,index)=>{
+
+        list.innerHTML += `
+
+        <div
+        class="todoItem ${todo.done ? "done" : ""}">
+
+            <span>
+                ${escapeHTML(todo.text)}
+            </span>
+
+            <div>
+
+                <button
+                class="smallBtn"
+                onclick="toggleTodo(${index})">
+                    ✓
+                </button>
+
+                <button
+                class="smallBtn dangerBtn"
+                onclick="deleteTodo(${index})">
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document
+    .getElementById("taskCount")
+    .textContent = data.todos.length;
+
+}
+
+
+function toggleTodo(index){
+
+    const data = getData();
+
+
+    data.todos[index].done =
+        !data.todos[index].done;
+
+
+    updateData(data);
+
+
+    loadTodos();
+
+}
+
+
+function deleteTodo(index){
+
+    const data = getData();
+
+
+    data.todos.splice(index,1);
+
+
+    updateData(data);
+
+
+    loadTodos();
+
+}
+
+
+/* =====================================================
+   TOOL MODAL
+===================================================== */
+
+function openTool(type){
+
+    const modal =
+        document.getElementById("toolModal");
+
+
+    const title =
+        document.getElementById("modalTitle");
+
+
+    const content =
+        document.getElementById("modalContent");
+
+
+    modal.classList.remove("hidden");
+
+
+    if(type === "calculator"){
+
+        title.textContent =
+            "🧮 Calculator";
+
+
+        content.innerHTML = `
+
+        <input
+        id="calcDisplay"
+        class="calcDisplay"
+        readonly>
+
+
+        <div class="calcGrid">
+
+            <button onclick="calcClear()">C</button>
+
+            <button onclick="calcAdd('/')">÷</button>
+
+            <button onclick="calcAdd('*')">×</button>
+
+            <button onclick="calcBack()">⌫</button>
+
+
+            <button onclick="calcAdd('7')">7</button>
+
+            <button onclick="calcAdd('8')">8</button>
+
+            <button onclick="calcAdd('9')">9</button>
+
+            <button onclick="calcAdd('-')">−</button>
+
+
+            <button onclick="calcAdd('4')">4</button>
+
+            <button onclick="calcAdd('5')">5</button>
+
+            <button onclick="calcAdd('6')">6</button>
+
+            <button onclick="calcAdd('+')">+</button>
+
+
+            <button onclick="calcAdd('1')">1</button>
+
+            <button onclick="calcAdd('2')">2</button>
+
+            <button onclick="calcAdd('3')">3</button>
+
+            <button onclick="calcEqual()">=</button>
+
+
+            <button onclick="calcAdd('0')">0</button>
+
+            <button onclick="calcAdd('.')">.</button>
+
+            <button onclick="calcAdd('%')">%</button>
+
+            <button onclick="calcEqual()">Enter</button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "stopwatch"){
+
+        title.textContent =
+            "⏱️ Stopwatch";
+
+
+        content.innerHTML = `
+
+        <div
+        class="timerDisplay"
+        id="stopwatchDisplay">
+
+            00:00:00
+
+        </div>
+
+
+        <div class="timerButtons">
+
+            <button
+            class="smallBtn"
+            onclick="startStopwatch()">
+                Start
+            </button>
+
+            <button
+            class="smallBtn"
+            onclick="pauseStopwatch()">
+                Pause
+            </button>
+
+            <button
+            class="smallBtn dangerBtn"
+            onclick="resetStopwatch()">
+                Reset
+            </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "timer"){
+
+        title.textContent =
+            "⏳ Countdown Timer";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Seconds
+            </label>
+
+            <input
+            id="timerSeconds"
+            type="number"
+            value="60"
+            min="1">
+
+        </div>
+
+
+        <div
+        class="timerDisplay"
+        id="timerDisplay">
+
+            60
+
+        </div>
+
+
+        <div class="timerButtons">
+
+            <button
+            class="smallBtn"
+            onclick="startTimer()">
+                Start
+            </button>
+
+            <button
+            class="smallBtn dangerBtn"
+            onclick="resetTimer()">
+                Reset
+            </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "calendar"){
+
+        title.textContent =
+            "📅 Calendar";
+
+
+        const now = new Date();
+
+
+        content.innerHTML = `
+
+        <div
+        class="panel"
+        style="margin:0;text-align:center;">
+
+            <h2>
+                ${now.toLocaleString(
+                    "default",
+                    {month:"long"}
+                )}
+                ${now.getFullYear()}
+            </h2>
+
+            <br>
+
+            <input
+            type="date"
+            style="
+            padding:13px;
+            width:100%;
+            border-radius:10px;
+            border:1px solid var(--border);
+            background:var(--card2);
+            color:var(--text);">
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "converter"){
+
+        title.textContent =
+            "📏 Unit Converter";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Kilometers
+            </label>
+
+            <input
+            id="kmValue"
+            type="number"
+            oninput="convertKM()">
+
+        </div>
+
+
+        <div class="stat">
+
+            <h3 id="meterResult">
+                0
+            </h3>
+
+            <p>
+                Meters
+            </p>
+
+        </div>
+
+
+        <br>
+
+
+        <div class="stat">
+
+            <h3 id="mileResult">
+                0
+            </h3>
+
+            <p>
+                Miles
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "password"){
+
+        title.textContent =
+            "🔑 Password Generator";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Password Length
+            </label>
+
+            <input
+            id="passLength"
+            type="number"
+            value="16"
+            min="4"
+            max="50">
+
+        </div>
+
+
+        <button
+        class="smallBtn"
+        onclick="generatePassword()">
+            Generate
+        </button>
+
+
+        <br><br>
+
+
+        <input
+        id="generatedPassword"
+        readonly
+        style="
+        width:100%;
+        padding:14px;
+        border-radius:12px;
+        border:1px solid var(--border);
+        background:var(--card2);
+        color:var(--text);">
+
+        `;
+
+    }
+
+
+    else if(type === "random"){
+
+        title.textContent =
+            "🎲 Random Generator";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Minimum
+            </label>
+
+            <input
+            id="randMin"
+            type="number"
+            value="1">
+
+        </div>
+
+
+        <div class="inputGroup">
+
+            <label>
+                Maximum
+            </label>
+
+            <input
+            id="randMax"
+            type="number"
+            value="100">
+
+        </div>
+
+
+        <button
+        class="smallBtn"
+        onclick="randomNumber()">
+            Generate
+        </button>
+
+
+        <h2
+        id="randomResult"
+        style="
+        text-align:center;
+        margin-top:25px;">
+            ?
+        </h2>
+
+        `;
+
+    }
+
+
+    else if(type === "pomodoro"){
+
+        title.textContent =
+            "🍅 Pomodoro";
+
+
+        content.innerHTML = `
+
+        <div
+        class="timerDisplay"
+        id="pomodoroDisplay">
+
+            25:00
+
+        </div>
+
+
+        <div class="timerButtons">
+
+            <button
+            class="smallBtn"
+            onclick="startPomodoro()">
+                Start
+            </button>
+
+            <button
+            class="smallBtn dangerBtn"
+            onclick="resetPomodoro()">
+                Reset
+            </button>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "qr"){
+
+        title.textContent =
+            "🔳 QR Generator";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Text / URL
+            </label>
+
+            <input
+            id="qrText"
+            placeholder="Enter text or URL">
+
+        </div>
+
+
+        <button
+        class="smallBtn"
+        onclick="generateQR()">
+            Generate QR
+        </button>
+
+
+        <div
+        id="qrResult"
+        style="
+        text-align:center;
+        margin-top:20px;">
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "color"){
+
+        title.textContent =
+            "🎨 Color Picker";
+
+
+        content.innerHTML = `
+
+        <input
+        type="color"
+        id="colorPicker"
+        value="#6c63ff"
+        style="
+        width:100%;
+        height:100px;">
+
+
+        <h2
+        id="colorValue"
+        style="
+        text-align:center;
+        margin-top:20px;">
+            #6C63FF
+        </h2>
+
+        `;
+
+
+        setTimeout(()=>{
+
+            const picker =
+                document.getElementById(
+                    "colorPicker"
+                );
+
+
+            picker.addEventListener(
+                "input",
+                function(){
+
+                    document
+                    .getElementById("colorValue")
+                    .textContent =
+                        this.value.toUpperCase();
+
+                }
+            );
+
+        },50);
+
+    }
+
+
+    else if(type === "text"){
+
+        title.textContent =
+            "🔤 Text Counter";
+
+
+        content.innerHTML = `
+
+        <textarea
+        id="counterText"
+        rows="8"
+        placeholder="Type or paste text..."
+        style="
+        width:100%;
+        padding:14px;
+        border-radius:12px;
+        border:1px solid var(--border);
+        background:var(--card2);
+        color:var(--text);"
+        oninput="updateTextCount()">
+        </textarea>
+
+
+        <div
+        style="
+        margin-top:15px;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:10px;">
+
+            <div class="stat">
+
+                <h3 id="charCount">
+                    0
+                </h3>
+
+                <p>
+                    Characters
+                </p>
+
+            </div>
+
+
+            <div class="stat">
+
+                <h3 id="wordCount">
+                    0
+                </h3>
+
+                <p>
+                    Words
+                </p>
+
+            </div>
+
+        </div>
+
+        `;
+
+    }
+
+
+    else if(type === "age"){
+
+        title.textContent =
+            "🎂 Age Calculator";
+
+
+        content.innerHTML = `
+
+        <div class="inputGroup">
+
+            <label>
+                Birth Date
+            </label>
+
+            <input
+            type="date"
+            id="birthDate">
+
+        </div>
+
+
+        <button
+        class="smallBtn"
+        onclick="calculateAge()">
+            Calculate
+        </button>
+
+
+        <h2
+        id="ageResult"
+        style="
+        text-align:center;
+        margin-top:25px;">
+        </h2>
+
+        `;
+
+    }
+
+
+    else if(type === "clock"){
+
+        title.textContent =
+            "🕐 Digital Clock";
+
+
+        content.innerHTML = `
+
+        <div
+        class="clock"
+        id="liveClock">
+            00:00:00
+        </div>
+
+        `;
+
+
+        updateClock();
+
+    }
+
+}
+
+
+function closeTool(){
+
+    document
+    .getElementById("toolModal")
+    .classList.add("hidden");
+
+}
+
+
+/* =====================================================
+   CALCULATOR
+===================================================== */
+
+function calcAdd(value){
+
+    const display =
+        document.getElementById(
+            "calcDisplay"
+        );
+
+    display.value += value;
+
+}
+
+
+function calcClear(){
+
+    document
+    .getElementById("calcDisplay")
+    .value = "";
+
+}
+
+
+function calcBack(){
+
+    const display =
+        document.getElementById(
+            "calcDisplay"
+        );
+
+    display.value =
+        display.value.slice(0,-1);
+
+}
+
+
+function calcEqual(){
+
+    const display =
+        document.getElementById(
+            "calcDisplay"
+        );
+
+
+    try{
+
+        const expression =
+            display.value;
+
+
+        if(
+            !/^[0-9+\-*/%.() ]+$/
+            .test(expression)
+        ){
+
+            throw new Error();
+
+        }
+
+
+        display.value =
+            Function(
+                '"use strict";return ('+
+                expression+
+                ')'
+            )();
+
+
+    }catch{
+
+        display.value = "Error";
+
+    }
+
+}
+
+
+/* =====================================================
+   STOPWATCH
+===================================================== */
+
+let stopwatchInterval = null;
+
+let stopwatchSeconds = 0;
+
+
+function updateStopwatch(){
+
+    const h =
+        Math.floor(
+            stopwatchSeconds / 3600
+        );
+
+
+    const m =
+        Math.floor(
+            (stopwatchSeconds % 3600) / 60
+        );
+
+
+    const s =
+        stopwatchSeconds % 60;
+
+
+    const el =
+        document.getElementById(
+            "stopwatchDisplay"
+        );
+
+
+    if(el){
+
+        el.textContent =
+            String(h).padStart(2,"0")+
+            ":"+
+            String(m).padStart(2,"0")+
+            ":"+
+            String(s).padStart(2,"0");
+
+    }
+
+}
+
+
+function startStopwatch(){
+
+    if(stopwatchInterval)return;
+
+
+    stopwatchInterval =
+        setInterval(()=>{
+
+            stopwatchSeconds++;
+
+            updateStopwatch();
+
+        },1000);
+
+}
+
+
+function pauseStopwatch(){
+
+    clearInterval(
+        stopwatchInterval
+    );
+
+    stopwatchInterval = null;
+
+}
+
+
+function resetStopwatch(){
+
+    pauseStopwatch();
+
+    stopwatchSeconds = 0;
+
+    updateStopwatch();
+
+}
+
+
+/* =====================================================
+   TIMER
+===================================================== */
+
+let timerInterval = null;
+
+let timerValue = 60;
+
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+
+    timerValue =
+        parseInt(
+            document.getElementById(
+                "timerSeconds"
+            ).value
+        ) || 60;
+
+
+    timerInterval =
+        setInterval(()=>{
+
+            timerValue--;
+
+
+            const el =
+                document.getElementById(
+                    "timerDisplay"
+                );
+
+
+            if(el){
+                el.textContent =
+                    timerValue;
+            }
+
+
+            if(timerValue <= 0){
+
+                clearInterval(
+                    timerInterval
+                );
+
+                timerInterval = null;
+
+                alert(
+                    "⏰ Timer finished!"
+                );
+
+            }
+
+        },1000);
+
+}
+
+
+function resetTimer(){
+
+    clearInterval(timerInterval);
+
+    timerInterval = null;
+
+
+    const input =
+        document.getElementById(
+            "timerSeconds"
+        );
+
+
+    timerValue =
+        parseInt(input?.value) || 60;
+
+
+    const display =
+        document.getElementById(
+            "timerDisplay"
+        );
+
+
+    if(display){
+
+        display.textContent =
+            timerValue;
+
+    }
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+function generatePassword(){
+
+    const length =
+        parseInt(
+            document.getElementById(
+                "passLength"
+            ).value
+        ) || 16;
+
+
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+
+        "abcdefghijklmnopqrstuvwxyz"+
+        "0123456789"+
+        "!@#$%^&*";
+
+
+    let password = "";
+
+
+    for(
+        let i=0;
+        i<length;
+        i++
+    ){
+
+        password +=
+            chars[
+                Math.floor(
+                    Math.random()*
+                    chars.length
+                )
+            ];
+
+    }
+
+
+    document
+    .getElementById(
+        "generatedPassword"
+    )
+    .value = password;
+
+}
+
+
+/* =====================================================
+   RANDOM
+===================================================== */
+
+function randomNumber(){
+
+    let min =
+        parseInt(
+            document.getElementById(
+                "randMin"
+            ).value
+        );
+
+
+    let max =
+        parseInt(
+            document.getElementById(
+                "randMax"
+            ).value
+        );
+
+
+    if(min > max){
+
+        [min,max] = [max,min];
+
+    }
+
+
+    const result =
+        Math.floor(
+            Math.random()*
+            (max-min+1)
+        )+min;
+
+
+    document
+    .getElementById(
+        "randomResult"
+    )
+    .textContent = result;
+
+}
+
+
+/* =====================================================
+   POMODORO
+===================================================== */
+
+let pomoInterval = null;
+
+let pomoSeconds = 1500;
+
+
+function updatePomodoro(){
+
+    const min =
+        Math.floor(
+            pomoSeconds / 60
+        );
+
+
+    const sec =
+        pomoSeconds % 60;
+
+
+    const el =
+        document.getElementById(
+            "pomodoroDisplay"
+        );
+
+
+    if(el){
+
+        el.textContent =
+            String(min).padStart(2,"0")+
+            ":"+
+            String(sec).padStart(2,"0");
+
+    }
+
+}
+
+
+function startPomodoro(){
+
+    if(pomoInterval)return;
+
+
+    pomoInterval =
+        setInterval(()=>{
+
+            pomoSeconds--;
+
+            updatePomodoro();
+
+
+            if(pomoSeconds <= 0){
+
+                clearInterval(
+                    pomoInterval
+                );
+
+                pomoInterval = null;
+
+                alert(
+                    "🍅 Pomodoro complete!"
+                );
+
+            }
+
+        },1000);
+
+}
+
+
+function resetPomodoro(){
+
+    clearInterval(pomoInterval);
+
+    pomoInterval = null;
+
+    pomoSeconds = 1500;
+
+    updatePomodoro();
+
+}
+
+
+/* =====================================================
+   QR
+===================================================== */
+
+function generateQR(){
+
+    const text =
+        document
+        .getElementById("qrText")
+        .value
+        .trim();
+
+
+    const result =
+        document.getElementById(
+            "qrResult"
+        );
+
+
+    if(!text){
+
+        result.innerHTML =
+            "<p style='color:var(--muted)'>Enter text first.</p>";
+
+        return;
+    }
+
+
+    result.innerHTML = `
+
+    <div style="
+    width:180px;
+    height:180px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#fff;
+    color:#000;
+    border-radius:10px;
+    font-size:45px;">
+
+        ▦ ▦ ▦
+        <br>
+        ▦ ▦ ▦
+        <br>
+        ▦ ▦ ▦
+
+    </div>
+
+    <p style="margin-top:15px;">
+        QR Preview
+    </p>
+
+    `;
+
+}
+
+
+/* =====================================================
+   TEXT COUNTER
+===================================================== */
+
+function updateTextCount(){
+
+    const text =
+        document
+        .getElementById(
+            "counterText"
+        )
+        .value;
+
+
+    document
+    .getElementById(
+        "charCount"
+    )
+    .textContent =
+        text.length;
+
+
+    const words =
+        text.trim()
+        ? text.trim().split(/\s+/).length
+        : 0;
+
+
+    document
+    .getElementById(
+        "wordCount"
+    )
+    .textContent = words;
+
+}
+
+
+/* =====================================================
+   AGE
+===================================================== */
+
+function calculateAge(){
+
+    const value =
+        document
+        .getElementById(
+            "birthDate"
+        )
+        .value;
+
+
+    if(!value)return;
+
+
+    const birth =
+        new Date(value);
+
+
+    const today =
+        new Date();
+
+
+    let age =
+        today.getFullYear() -
+        birth.getFullYear();
+
+
+    const month =
+        today.getMonth() -
+        birth.getMonth();
+
+
+    if(
+        month < 0 ||
+        (
+            month === 0 &&
+            today.getDate() <
+            birth.getDate()
+        )
+    ){
+
+        age--;
+
+    }
+
+
+    document
+    .getElementById(
+        "ageResult"
+    )
+    .textContent =
+        "You are " +
+        age +
+        " years old.";
+
+}
+
+
+/* =====================================================
+   CLOCK
+===================================================== */
+
+function updateClock(){
+
+    const el =
+        document.getElementById(
+            "liveClock"
+        );
+
+
+    if(!el)return;
+
+
+    const now =
+        new Date();
+
+
+    el.textContent =
+        now.toLocaleTimeString();
+
+}
+
+
+setInterval(
+    updateClock,
+    1000
+);
+
+
+/* =====================================================
+   CONVERTER
+===================================================== */
+
+function convertKM(){
+
+    const km =
+        parseFloat(
+            document.getElementById(
+                "kmValue"
+            ).value
+        ) || 0;
+
+
+    document
+    .getElementById(
+        "meterResult"
+    )
+    .textContent =
+        (km*1000).toFixed(2);
+
+
+    document
+    .getElementById(
+        "mileResult"
+    )
+    .textContent =
+        (km*0.621371).toFixed(4);
+
+}
+
+
+/* =====================================================
+   TOOL SEARCH
+===================================================== */
+
+function globalSearch(){
+
+    const value =
+        document
+        .getElementById(
+            "globalSearch"
+        )
+        .value
+        .toLowerCase();
+
+
+    document
+    .querySelectorAll(
+        "#allTools .toolCard"
+    )
+    .forEach(card=>{
+
+        const name =
+            card.dataset.name ||
+            "";
+
+
+        card.style.display =
+            name.includes(value)
+            ? "block"
+            : "none";
+
+    });
+
+}
+
+
+/* =====================================================
+   CLEAR ALL DATA
+===================================================== */
+
+function clearAllData(){
+
+    const yes =
+        confirm(
+            "Delete ALL local accounts, notes, tasks, PINs and settings?"
+        );
+
+
+    if(!yes)return;
+
+
+    localStorage.clear();
+
+    sessionStorage.clear();
+
+    location.reload();
+
+}
+
+
+/* =====================================================
+   ESCAPE HTML
+===================================================== */
+
+function escapeHTML(text){
+
+    return String(text)
+
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
+}
+
+
+/* =====================================================
+   IMPORTANT:
+   ALWAYS START AT LOGIN ON NEW PAGE LOAD
+===================================================== */
+
+function initializeApp(){
+
+    /*
+       We intentionally DO NOT automatically open
+       the dashboard from localStorage.
+
+       First visit:
+       Login / Sign Up
+
+       Returning visit:
+       Login
+
+       After successful login:
+       PIN if configured
+    */
+
+    currentUser = null;
+
+
+    document
+    .getElementById("authScreen")
+    .classList.remove("hidden");
+
+
+    document
+    .getElementById("pinGate")
+    .classList.add("hidden");
+
+
+    document
+    .getElementById("app")
+    .classList.add("hidden");
+
+
+    showLogin();
+
+}
+
+
+initializeApp();
+
+</script>
+
+</body>
+</html>
