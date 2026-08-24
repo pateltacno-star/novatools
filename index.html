@@ -626,88 +626,70 @@ button{
 /* ================= RESPONSIVE ================= */
 
 @media(max-width:900px){
-
     .sidebar{
         width:70px;
         padding:12px;
     }
-
     .sideLogo{
         text-align:center;
         font-size:0;
     }
-
     .sideLogo::after{
         content:"N";
         color:var(--primary);
         font-size:25px;
     }
-
     .nav button{
         padding:13px 5px;
         text-align:center;
         font-size:0;
     }
-
     .nav button::first-letter{
         font-size:20px;
     }
-
     .profileMini{
         left:8px;
         right:8px;
         padding:7px;
     }
-
     .profileInfo{
         display:none;
     }
-
     .main{
         margin-left:70px;
     }
-
     .stats{
         grid-template-columns:repeat(2,1fr);
     }
 }
 
 @media(max-width:600px){
-
     .main{
         padding:14px;
     }
-
     .topbar{
         flex-wrap:wrap;
     }
-
     .searchBox{
         order:2;
         flex-basis:100%;
     }
-
     .hero h1{
         font-size:25px;
     }
-
     .stats{
         grid-template-columns:1fr 1fr;
     }
-
     .toolGrid{
         grid-template-columns:repeat(2,1fr);
     }
-
     .toolCard{
         padding:14px;
     }
-
     .profileCard{
         flex-direction:column;
         text-align:center;
     }
-
     .timerDisplay{
         font-size:45px;
     }
@@ -717,3683 +699,1164 @@ button{
 
 <body>
 
-
-<!-- =====================================================
-     AUTH SCREEN
-===================================================== -->
-
+<!-- ================= AUTH SCREEN ================= -->
 <div id="authScreen">
-
     <div class="authBox">
-
-        <div class="logo">
-            Nova<span>Tools</span>
-        </div>
-
-        <div class="authSubtitle">
-            Modern All-In-One Dashboard
-        </div>
-
+        <div class="logo">Nova<span>Tools</span></div>
+        <div class="authSubtitle">Modern All-In-One Dashboard</div>
         <div class="authTabs">
-
-            <button
-            id="loginTab"
-            class="active"
-            onclick="showLogin()">
-                Login
-            </button>
-
-            <button
-            id="signupTab"
-            onclick="showSignup()">
-                Sign Up
-            </button>
-
+            <button id="loginTab" class="active" onclick="showLogin()">Login</button>
+            <button id="signupTab" onclick="showSignup()">Sign Up</button>
         </div>
 
-
-        <!-- LOGIN -->
-
-        <form id="loginForm"
-        onsubmit="event.preventDefault();login();">
-
+        <form id="loginForm" onsubmit="event.preventDefault();login();">
             <div class="inputGroup">
-
                 <label>Username</label>
-
-                <input
-                id="loginUser"
-                name="username"
-                autocomplete="username"
-                required
-                placeholder="Enter username">
-
+                <input id="loginUser" name="username" autocomplete="username" required placeholder="Enter username">
             </div>
-
-
             <div class="inputGroup">
-
                 <label>Password</label>
-
-                <input
-                id="loginPass"
-                name="password"
-                type="password"
-                autocomplete="current-password"
-                required
-                placeholder="Enter password">
-
+                <input id="loginPass" name="password" type="password" autocomplete="current-password" required placeholder="Enter password">
             </div>
-
-
-            <button class="primaryBtn">
-                🔐 Login
-            </button>
-
+            <button class="primaryBtn">🔐 Login</button>
         </form>
 
-
-        <!-- SIGNUP -->
-
-        <form id="signupForm"
-        class="hidden"
-        onsubmit="event.preventDefault();signup();">
-
+        <form id="signupForm" class="hidden" onsubmit="event.preventDefault();signup();">
             <div class="inputGroup">
-
                 <label>Username</label>
-
-                <input
-                id="signupUser"
-                name="new-username"
-                autocomplete="username"
-                required
-                minlength="3"
-                placeholder="Create username">
-
+                <input id="signupUser" name="new-username" autocomplete="username" required minlength="3" placeholder="Create username">
             </div>
-
-
             <div class="inputGroup">
-
                 <label>Password</label>
-
-                <input
-                id="signupPass"
-                name="new-password"
-                type="password"
-                autocomplete="new-password"
-                required
-                minlength="4"
-                placeholder="Create password">
-
+                <input id="signupPass" name="new-password" type="password" autocomplete="new-password" required minlength="4" placeholder="Create password">
             </div>
-
-
             <div class="inputGroup">
-
                 <label>Confirm Password</label>
-
-                <input
-                id="signupConfirm"
-                type="password"
-                autocomplete="new-password"
-                required
-                minlength="4"
-                placeholder="Confirm password">
-
+                <input id="signupConfirm" type="password" autocomplete="new-password" required minlength="4" placeholder="Confirm password">
             </div>
-
-
-            <button class="primaryBtn">
-                ✨ Create Account
-            </button>
-
+            <button class="primaryBtn">✨ Create Account</button>
         </form>
 
-
-        <div class="demoText">
-            First time here? Create an account.
-        </div>
-
+        <div class="demoText">First time here? Create an account.</div>
     </div>
-
 </div>
 
-
-<!-- =====================================================
-     PIN GATE
-===================================================== -->
-
+<!-- ================= PIN GATE ================= -->
 <div id="pinGate" class="hidden">
-
     <div class="authBox pinScreen">
-
-        <div class="lockIcon">
-            🔒
-        </div>
-
-        <h1>
-            PIN Required
-        </h1>
-
-        <p style="color:var(--muted);margin:10px 0 25px;">
-            Enter your PIN to open NovaTools.
-        </p>
-
-
-        <form
-        onsubmit="event.preventDefault();unlockWithPIN();">
-
+        <div class="lockIcon">🔒</div>
+        <h1>PIN Required</h1>
+        <p style="color:var(--muted);margin:10px 0 25px;">Enter your PIN to open NovaTools.</p>
+        <form onsubmit="event.preventDefault();unlockWithPIN();">
             <div class="inputGroup">
-
-                <input
-                id="gatePin"
-                class="pinInput"
-                type="password"
-                inputmode="numeric"
-                maxlength="6"
-                autocomplete="off"
-                required
-                placeholder="••••">
-
+                <input id="gatePin" class="pinInput" type="password" inputmode="numeric" maxlength="6" autocomplete="off" required placeholder="••••">
             </div>
-
-
-            <button class="primaryBtn">
-                🔓 Unlock Dashboard
-            </button>
-
+            <button class="primaryBtn">🔓 Unlock Dashboard</button>
         </form>
-
-
-        <button
-        class="smallBtn dangerBtn"
-        style="width:100%;margin-top:12px;"
-        onclick="backToLogin()">
-
-            Logout
-
-        </button>
-
-        <p
-        id="pinError"
-        style="color:var(--danger);margin-top:15px;">
-        </p>
-
+        <button class="smallBtn dangerBtn" style="width:100%;margin-top:12px;" onclick="backToLogin()">Logout</button>
+        <p id="pinError" style="color:var(--danger);margin-top:15px;"></p>
     </div>
-
 </div>
 
-
-<!-- =====================================================
-     APP
-===================================================== -->
-
+<!-- ================= APP ================= -->
 <div id="app" class="hidden">
-
     <aside class="sidebar">
-
-        <div class="sideLogo">
-            Nova<span>Tools</span>
-        </div>
-
-
+        <div class="sideLogo">Nova<span>Tools</span></div>
         <div class="nav">
-
-            <button
-            class="active"
-            onclick="openPage('dashboard',this)">
-                🏠 Dashboard
-            </button>
-
-            <button onclick="openPage('tools',this)">
-                🛠️ Tools
-            </button>
-
-            <button onclick="openPage('todo',this)">
-                ✅ To-Do
-            </button>
-
-            <button onclick="openPage('notes',this)">
-                📝 Notes
-            </button>
-
-            <button onclick="openPage('study',this)">
-                📚 Study
-            </button>
-
-            <button onclick="openPage('pin',this)">
-                🔒 PIN Lock
-            </button>
-
-            <button onclick="openPage('notifications',this)">
-                🔔 Notifications
-            </button>
-
-            <button onclick="openPage('profile',this)">
-                👤 Profile
-            </button>
-
-            <button onclick="openPage('settings',this)">
-                ⚙️ Settings
-            </button>
-
+            <button class="active" onclick="openPage('dashboard',this)">🏠 Dashboard</button>
+            <button onclick="openPage('tools',this)">🛠️ Tools</button>
+            <button onclick="openPage('todo',this)">✅ To-Do</button>
+            <button onclick="openPage('notes',this)">📝 Notes</button>
+            <button onclick="openPage('study',this)">📚 Study</button>
+            <button onclick="openPage('pin',this)">🔒 PIN Lock</button>
+            <button onclick="openPage('notifications',this)">🔔 Notifications</button>
+            <button onclick="openPage('profile',this)">👤 Profile</button>
+            <button onclick="openPage('settings',this)">⚙️ Settings</button>
         </div>
-
-
         <div class="profileMini">
-
-            <div
-            class="avatar"
-            id="miniAvatar">
-                U
-            </div>
-
+            <div class="avatar" id="miniAvatar">U</div>
             <div class="profileInfo">
-
-                <strong id="miniName">
-                    User
-                </strong>
-
-                <small>
-                    Local Account
-                </small>
-
+                <strong id="miniName">User</strong>
+                <small>Local Account</small>
             </div>
-
         </div>
-
     </aside>
 
-
     <main class="main">
-
-
         <!-- TOP BAR -->
-
         <div class="topbar">
-
             <div class="searchBox">
-
-                <input
-                id="globalSearch"
-                placeholder="🔎 Search tools..."
-                oninput="globalSearch()">
-
+                <input id="globalSearch" placeholder="🔎 Search tools..." oninput="globalSearch()">
             </div>
-
-
             <div class="topActions">
-
-                <button
-                class="iconBtn"
-                onclick="toggleTheme()">
-                    🌙
-                </button>
-
-                <button
-                class="iconBtn"
-                onclick="openPageByName('notifications')">
-                    🔔
-                </button>
-
-                <button
-                class="iconBtn"
-                onclick="openPageByName('profile')">
-                    👤
-                </button>
-
+                <button class="iconBtn" onclick="toggleTheme()">🌙</button>
+                <button class="iconBtn" onclick="openPageByName('notifications')">🔔</button>
+                <button class="iconBtn" onclick="openPageByName('profile')">👤</button>
             </div>
-
         </div>
 
-
-        <!-- =================================================
-             DASHBOARD
-        ================================================= -->
-
-        <section
-        id="dashboard"
-        class="page active">
-
+        <!-- DASHBOARD -->
+        <section id="dashboard" class="page active">
             <div class="hero">
-
-                <h1>
-                    Welcome back,
-                    <span id="welcomeName">
-                        User
-                    </span>
-                    👋
-                </h1>
-
-                <p>
-                    Your personal all-in-one tool dashboard.
-                </p>
-
+                <h1>Welcome back, <span id="welcomeName">User</span> 👋</h1>
+                <p>Your personal all-in-one tool dashboard.</p>
             </div>
-
-
             <div class="stats">
-
                 <div class="stat">
                     <div class="statIcon">🛠️</div>
                     <h3>20+</h3>
                     <p>Tools</p>
                 </div>
-
                 <div class="stat">
                     <div class="statIcon">📝</div>
                     <h3 id="noteCount">0</h3>
                     <p>Notes</p>
                 </div>
-
                 <div class="stat">
                     <div class="statIcon">✅</div>
                     <h3 id="taskCount">0</h3>
                     <p>Tasks</p>
                 </div>
-
                 <div class="stat">
-                    <div class="statIcon">🔥</div>
-                    <h3>1</h3>
-                    <p>Streak</p>
+                    <div class="statIcon">⭐</div>
+                    <h3 id="dashPoints">0</h3>
+                    <p>Study Points</p>
                 </div>
-
             </div>
 
-
-            <h2 class="sectionTitle">
-                ⚡ Quick Tools
-            </h2>
-
-
+            <h2 class="sectionTitle">⚡ Quick Tools</h2>
             <div class="toolGrid">
-
-                <div
-                class="toolCard"
-                onclick="openPageByName('todo')">
-
+                <div class="toolCard" onclick="openPageByName('todo')">
                     <div class="toolIcon">✅</div>
-
                     <h3>To-Do</h3>
-
-                    <p>
-                        Manage tasks
-                    </p>
-
+                    <p>Manage tasks</p>
                 </div>
-
-
-                <div
-                class="toolCard"
-                onclick="openPageByName('notes')">
-
+                <div class="toolCard" onclick="openPageByName('notes')">
                     <div class="toolIcon">📝</div>
-
                     <h3>Notes</h3>
-
-                    <p>
-                        Save notes
-                    </p>
-
+                    <p>Save notes</p>
                 </div>
-
-
-                <div
-                class="toolCard"
-                onclick="openTool('calculator')">
-
+                <div class="toolCard" onclick="openTool('calculator')">
                     <div class="toolIcon">🧮</div>
-
                     <h3>Calculator</h3>
-
-                    <p>
-                        Calculate numbers
-                    </p>
-
+                    <p>Calculate numbers</p>
                 </div>
-
-
-                <div
-                class="toolCard"
-                onclick="openPageByName('pin')">
-
-                    <div class="toolIcon">🔒</div>
-
-                    <h3>PIN Lock</h3>
-
-                    <p>
-                        Protect dashboard
-                    </p>
-
+                <div class="toolCard" onclick="openTool('bmi')">
+                    <div class="toolIcon">⚖️</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Health check</p>
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             ALL TOOLS
-        ================================================= -->
-
+        <!-- ALL TOOLS -->
         <section id="tools" class="page">
-
             <h1>🛠️ All Tools</h1>
-
-            <p style="color:var(--muted);margin:8px 0 20px;">
-                Everything in one place.
-            </p>
-
-
-            <div
-            class="toolGrid"
-            id="allTools">
-
-
-                <div
-                class="toolCard"
-                data-name="calculator"
-                onclick="openTool('calculator')">
-
+            <p style="color:var(--muted);margin:8px 0 20px;">Everything in one place.</p>
+            <div class="toolGrid" id="allTools">
+                <div class="toolCard" data-name="calculator" onclick="openTool('calculator')">
                     <div class="toolIcon">🧮</div>
                     <h3>Calculator</h3>
                     <p>Basic calculator</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="stopwatch"
-                onclick="openTool('stopwatch')">
-
+                <div class="toolCard" data-name="bmi health fitness" onclick="openTool('bmi')">
+                    <div class="toolIcon">⚖️</div>
+                    <h3>BMI Calculator</h3>
+                    <p>Body Mass Index</p>
+                </div>
+                <div class="toolCard" data-name="tts text to speech" onclick="openTool('tts')">
+                    <div class="toolIcon">🗣️</div>
+                    <h3>Text to Speech</h3>
+                    <p>Voice reader</p>
+                </div>
+                <div class="toolCard" data-name="stopwatch" onclick="openTool('stopwatch')">
                     <div class="toolIcon">⏱️</div>
                     <h3>Stopwatch</h3>
                     <p>Track time</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="timer countdown"
-                onclick="openTool('timer')">
-
+                <div class="toolCard" data-name="timer countdown" onclick="openTool('timer')">
                     <div class="toolIcon">⏳</div>
                     <h3>Timer</h3>
                     <p>Countdown timer</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="calendar"
-                onclick="openTool('calendar')">
-
+                <div class="toolCard" data-name="calendar" onclick="openTool('calendar')">
                     <div class="toolIcon">📅</div>
                     <h3>Calendar</h3>
                     <p>View calendar</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="unit converter"
-                onclick="openTool('converter')">
-
+                <div class="toolCard" data-name="unit converter" onclick="openTool('converter')">
                     <div class="toolIcon">📏</div>
                     <h3>Unit Converter</h3>
                     <p>Convert units</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="password generator"
-                onclick="openTool('password')">
-
+                <div class="toolCard" data-name="password generator" onclick="openTool('password')">
                     <div class="toolIcon">🔑</div>
                     <h3>Password Generator</h3>
                     <p>Generate passwords</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="random generator"
-                onclick="openTool('random')">
-
+                <div class="toolCard" data-name="random generator" onclick="openTool('random')">
                     <div class="toolIcon">🎲</div>
                     <h3>Random Generator</h3>
                     <p>Random number</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="pomodoro study"
-                onclick="openTool('pomodoro')">
-
+                <div class="toolCard" data-name="pomodoro study" onclick="openTool('pomodoro')">
                     <div class="toolIcon">🍅</div>
                     <h3>Pomodoro</h3>
                     <p>Study timer</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="qr generator"
-                onclick="openTool('qr')">
-
+                <div class="toolCard" data-name="qr generator" onclick="openTool('qr')">
                     <div class="toolIcon">🔳</div>
                     <h3>QR Generator</h3>
-                    <p>QR tool</p>
-
+                    <p>Real QR tool</p>
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="color picker"
-                onclick="openTool('color')">
-
+                <div class="toolCard" data-name="color picker" onclick="openTool('color')">
                     <div class="toolIcon">🎨</div>
                     <h3>Color Picker</h3>
                     <p>Choose colors</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="text counter"
-                onclick="openTool('text')">
-
+                <div class="toolCard" data-name="text counter" onclick="openTool('text')">
                     <div class="toolIcon">🔤</div>
                     <h3>Text Counter</h3>
                     <p>Count text</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="age calculator"
-                onclick="openTool('age')">
-
+                <div class="toolCard" data-name="age calculator" onclick="openTool('age')">
                     <div class="toolIcon">🎂</div>
                     <h3>Age Calculator</h3>
                     <p>Calculate age</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="digital clock"
-                onclick="openTool('clock')">
-
+                <div class="toolCard" data-name="digital clock" onclick="openTool('clock')">
                     <div class="toolIcon">🕐</div>
                     <h3>Digital Clock</h3>
                     <p>Live time</p>
-
                 </div>
-
-
-                <div
-                class="toolCard"
-                data-name="notes"
-                onclick="openPageByName('notes')">
-
-                    <div class="toolIcon">📝</div>
-                    <h3>Notes</h3>
-                    <p>Personal notes</p>
-
-                </div>
-
-
-                <div
-                class="toolCard"
-                data-name="todo task manager"
-                onclick="openPageByName('todo')">
-
-                    <div class="toolIcon">✅</div>
-                    <h3>To-Do Manager</h3>
-                    <p>Manage tasks</p>
-
-                </div>
-
-
-                <div
-                class="toolCard"
-                data-name="study planner"
-                onclick="openPageByName('study')">
-
-                    <div class="toolIcon">🎓</div>
-                    <h3>Study Planner</h3>
-                    <p>Plan study</p>
-
-                </div>
-
-
-                <div
-                class="toolCard"
-                data-name="pin security"
-                onclick="openPageByName('pin')">
-
-                    <div class="toolIcon">🔒</div>
-                    <h3>PIN Lock</h3>
-                    <p>Dashboard security</p>
-
-                </div>
-
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             TODO
-        ================================================= -->
-
+        <!-- TODO -->
         <section id="todo" class="page">
-
             <h1>✅ To-Do List</h1>
-
             <br>
-
             <div class="panel">
-
                 <div class="todoInput">
-
-                    <input
-                    id="todoInput"
-                    placeholder="Add a task..."
-                    onkeydown="if(event.key==='Enter')addTodo()">
-
-                    <button
-                    class="smallBtn"
-                    onclick="addTodo()">
-                        Add
-                    </button>
-
+                    <input id="todoInput" placeholder="Add a task..." onkeydown="if(event.key==='Enter')addTodo()">
+                    <button class="smallBtn" onclick="addTodo()">Add</button>
                 </div>
-
                 <div id="todoList"></div>
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             NOTES
-        ================================================= -->
-
+        <!-- NOTES -->
         <section id="notes" class="page">
-
             <h1>📝 My Notes</h1>
-
             <br>
-
             <div class="panel">
-
                 <div class="inputGroup">
-
-                    <label>
-                        Note Title
-                    </label>
-
-                    <input
-                    id="noteTitle"
-                    placeholder="Example: Science">
-
+                    <label>Note Title</label>
+                    <input id="noteTitle" placeholder="Example: Science Revision">
                 </div>
-
-
                 <div class="inputGroup">
-
-                    <label>
-                        Note
-                    </label>
-
-                    <textarea
-                    id="noteText"
-                    rows="5"
-                    placeholder="Write your note...">
-                    </textarea>
-
+                    <label>Note Content</label>
+                    <textarea id="noteText" rows="4" placeholder="Write your note..."></textarea>
                 </div>
-
-
-                <button
-                class="smallBtn"
-                onclick="addNote()">
-                    Save Note
-                </button>
-
+                <button class="smallBtn" onclick="addNote()">Save Note</button>
             </div>
-
-
-            <div
-            id="notesList"
-            class="notesGrid">
-            </div>
-
+            <div id="notesList" class="notesGrid"></div>
         </section>
 
-
-        <!-- =================================================
-             STUDY
-        ================================================= -->
-
+        <!-- STUDY -->
         <section id="study" class="page">
-
             <h1>📚 Study Center</h1>
-
             <br>
-
             <div class="stats">
-
                 <div class="stat">
-                    <div class="statIcon">📖</div>
-                    <h3>0</h3>
-                    <p>Chapters</p>
+                    <div class="statIcon">🍅</div>
+                    <h3 id="studySessions">0</h3>
+                    <p>Pomodoros</p>
                 </div>
-
-                <div class="stat">
-                    <div class="statIcon">📝</div>
-                    <h3>0</h3>
-                    <p>Questions</p>
-                </div>
-
-                <div class="stat">
-                    <div class="statIcon">⏱️</div>
-                    <h3>0m</h3>
-                    <p>Study Time</p>
-                </div>
-
                 <div class="stat">
                     <div class="statIcon">🏆</div>
-                    <h3>0</h3>
+                    <h3 id="studyPoints">0</h3>
                     <p>Points</p>
                 </div>
-
             </div>
-
-
             <div class="panel">
-
-                <h2>
-                    🎯 Today's Goal
-                </h2>
-
-                <p
-                style="color:var(--muted);margin:10px 0;">
-                    Complete your daily study goal.
-                </p>
-
-                <progress
-                value="35"
-                max="100"
-                style="width:100%;height:20px;">
-                </progress>
-
+                <h2>🎯 Quick Study Pomodoro</h2>
+                <p style="color:var(--muted);margin:10px 0;">Complete 25 min sessions to earn +10 points!</p>
+                <button class="smallBtn" onclick="openTool('pomodoro')">Launch Pomodoro</button>
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             PIN
-        ================================================= -->
-
+        <!-- PIN -->
         <section id="pin" class="page">
-
             <h1>🔒 PIN Lock</h1>
-
             <br>
-
             <div class="panel pinScreen">
-
-                <div class="lockIcon">
-                    🔐
-                </div>
-
-                <h2>
-                    Dashboard PIN
-                </h2>
-
-                <p
-                style="color:var(--muted);margin:10px 0 20px;">
-                    Create or change your 4-6 digit PIN.
-                </p>
-
-
+                <div class="lockIcon">🔐</div>
+                <h2>Dashboard PIN</h2>
+                <p style="color:var(--muted);margin:10px 0 20px;">Create or change your 4-6 digit PIN.</p>
                 <div class="inputGroup">
-
-                    <input
-                    id="newPin"
-                    class="pinInput"
-                    type="password"
-                    inputmode="numeric"
-                    maxlength="6"
-                    placeholder="••••">
-
+                    <input id="newPin" class="pinInput" type="password" inputmode="numeric" maxlength="6" placeholder="••••">
                 </div>
-
-
-                <button
-                class="primaryBtn"
-                onclick="savePIN()">
-                    🔒 Save / Change PIN
-                </button>
-
-
+                <button class="primaryBtn" onclick="savePIN()">🔒 Save / Change PIN</button>
                 <br><br>
-
-
-                <button
-                class="smallBtn dangerBtn"
-                style="width:100%;"
-                onclick="removePIN()">
-                    Remove PIN
-                </button>
-
-
-                <p
-                id="pinStatus"
-                style="margin-top:18px;color:var(--muted);">
-                </p>
-
+                <button class="smallBtn dangerBtn" style="width:100%;" onclick="removePIN()">Remove PIN</button>
+                <p id="pinStatus" style="margin-top:18px;color:var(--muted);"></p>
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             NOTIFICATIONS
-        ================================================= -->
-
-        <section
-        id="notifications"
-        class="page">
-
+        <!-- NOTIFICATIONS -->
+        <section id="notifications" class="page">
             <h1>🔔 Notifications</h1>
-
             <br>
-
             <div class="panel">
-
                 <div class="notification">
-
-                    <strong>
-                        👋 Welcome!
-                    </strong>
-
-                    <p>
-                        Your NovaTools dashboard is ready.
-                    </p>
-
-                    <small>
-                        Just now
-                    </small>
-
+                    <strong>👋 Welcome!</strong>
+                    <p>Your NovaTools dashboard is ready with new features.</p>
+                    <small>Just now</small>
                 </div>
-
-
-                <div class="notification">
-
-                    <strong>
-                        🔒 Security
-                    </strong>
-
-                    <p>
-                        PIN Lock is available in your settings.
-                    </p>
-
-                    <small>
-                        Today
-                    </small>
-
-                </div>
-
-
-                <div class="notification">
-
-                    <strong>
-                        💡 Tip
-                    </strong>
-
-                    <p>
-                        Use the search bar to find tools quickly.
-                    </p>
-
-                    <small>
-                        Today
-                    </small>
-
-                </div>
-
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             PROFILE
-        ================================================= -->
-
+        <!-- PROFILE -->
         <section id="profile" class="page">
-
             <h1>👤 User Profile</h1>
-
             <br>
-
             <div class="panel">
-
                 <div class="profileCard">
-
-                    <div
-                    class="bigAvatar"
-                    id="bigAvatar">
-                        U
-                    </div>
-
+                    <div class="bigAvatar" id="bigAvatar">U</div>
                     <div>
-
-                        <h2 id="profileName">
-                            User
-                        </h2>
-
-                        <p style="color:var(--muted);">
-                            Local Account
-                        </p>
-
-                        <p style="margin-top:8px;">
-                            ⭐ 0 Points
-                        </p>
-
+                        <h2 id="profileName">User</h2>
+                        <p style="color:var(--muted);">Local Account</p>
+                        <p style="margin-top:8px;" id="profilePoints">⭐ 0 Points</p>
                     </div>
-
                 </div>
-
-
                 <br>
-
-
                 <div class="inputGroup">
-
-                    <label>
-                        Username
-                    </label>
-
-                    <input
-                    id="profileUsername">
-
+                    <label>Username</label>
+                    <input id="profileUsername">
                 </div>
-
-
-                <button
-                class="smallBtn"
-                onclick="saveProfile()">
-                    Save Profile
-                </button>
-
+                <button class="smallBtn" onclick="saveProfile()">Save Profile</button>
             </div>
-
         </section>
 
-
-        <!-- =================================================
-             SETTINGS
-        ================================================= -->
-
+        <!-- SETTINGS -->
         <section id="settings" class="page">
-
             <h1>⚙️ Settings</h1>
-
             <br>
-
-
             <div class="panel">
-
-                <h3>
-                    🎨 Appearance
-                </h3>
-
+                <h3>🎨 Appearance</h3>
                 <br>
-
-                <button
-                class="smallBtn"
-                onclick="toggleTheme()">
-                    🌙 Toggle Dark / Light
-                </button>
-
+                <button class="smallBtn" onclick="toggleTheme()">🌙 Toggle Dark / Light</button>
             </div>
-
-
             <div class="panel">
-
-                <h3>
-                    🔐 Security
-                </h3>
-
+                <h3>💾 Backup & Restore</h3>
                 <br>
-
-                <button
-                class="smallBtn"
-                onclick="openPageByName('pin')">
-                    🔒 Manage PIN
-                </button>
-
+                <button class="smallBtn" onclick="exportData()">⬇️ Export Data (JSON)</button>
+                <button class="smallBtn" style="margin-left:8px;" onclick="document.getElementById('importFile').click()">⬆️ Import Data</button>
+                <input type="file" id="importFile" class="hidden" accept=".json" onchange="importData(event)">
             </div>
-
-
             <div class="panel">
-
-                <h3>
-                    🚪 Account
-                </h3>
-
+                <h3>🚪 Account</h3>
                 <br>
-
-                <button
-                class="smallBtn dangerBtn"
-                onclick="logout()">
-                    Logout
-                </button>
-
+                <button class="smallBtn dangerBtn" onclick="logout()">Logout</button>
             </div>
-
-
             <div class="panel">
-
-                <h3>
-                    🗑️ Data
-                </h3>
-
+                <h3>🗑️ Data</h3>
                 <br>
-
-                <button
-                class="smallBtn dangerBtn"
-                onclick="clearAllData()">
-                    Clear Local Data
-                </button>
-
+                <button class="smallBtn dangerBtn" onclick="clearAllData()">Clear Local Data</button>
             </div>
-
         </section>
-
     </main>
-
 </div>
 
-
-<!-- =====================================================
-     TOOL MODAL
-===================================================== -->
-
-<div
-id="toolModal"
-class="modal hidden">
-
+<!-- ================= MODAL ================= -->
+<div id="toolModal" class="modal hidden">
     <div class="modalBox">
-
         <div class="modalHeader">
-
-            <h2 id="modalTitle">
-                Tool
-            </h2>
-
-            <button
-            class="close"
-            onclick="closeTool()">
-                ×
-            </button>
-
+            <h2 id="modalTitle">Tool</h2>
+            <button class="close" onclick="closeTool()">×</button>
         </div>
-
         <div id="modalContent"></div>
-
     </div>
-
 </div>
-
 
 <script>
-
-/* =====================================================
-   GLOBAL ACCOUNT STATE
-===================================================== */
-
 let currentUser = null;
 
-
-/* =====================================================
-   USER DATABASE
-===================================================== */
-
-function getUsers(){
-
-    return JSON.parse(
-        localStorage.getItem("nova_users") || "{}"
-    );
+/* ================= AUDIO BEEP ================= */
+function playBeep(){
+    try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.frequency.value = 880;
+        osc.type = "sine";
+        osc.start();
+        gain.gain.exponentialRampToValueAtTime(0.00001, ctx.currentTime + 0.8);
+        setTimeout(() => osc.stop(), 800);
+    } catch(e) {}
 }
 
+/* ================= USER DATABASE ================= */
+function getUsers(){
+    return JSON.parse(localStorage.getItem("nova_users") || "{}");
+}
 
 function saveUsers(users){
-
-    localStorage.setItem(
-        "nova_users",
-        JSON.stringify(users)
-    );
+    localStorage.setItem("nova_users", JSON.stringify(users));
 }
 
-
 function getData(){
-
     const users = getUsers();
-
+    if(!users[currentUser]) return { password:"", notes:[], todos:[], points:0, pomodoros:0 };
+    if(users[currentUser].points === undefined) users[currentUser].points = 0;
+    if(users[currentUser].pomodoros === undefined) users[currentUser].pomodoros = 0;
     return users[currentUser];
 }
 
-
 function updateData(data){
-
     const users = getUsers();
-
     users[currentUser] = data;
-
     saveUsers(users);
 }
 
-
-/* =====================================================
-   AUTH UI
-===================================================== */
-
+/* ================= AUTH UI ================= */
 function showLogin(){
-
-    document
-    .getElementById("loginForm")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("signupForm")
-    .classList.add("hidden");
-
-    document
-    .getElementById("loginTab")
-    .classList.add("active");
-
-    document
-    .getElementById("signupTab")
-    .classList.remove("active");
+    document.getElementById("loginForm").classList.remove("hidden");
+    document.getElementById("signupForm").classList.add("hidden");
+    document.getElementById("loginTab").classList.add("active");
+    document.getElementById("signupTab").classList.remove("active");
 }
-
 
 function showSignup(){
-
-    document
-    .getElementById("loginForm")
-    .classList.add("hidden");
-
-    document
-    .getElementById("signupForm")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("loginTab")
-    .classList.remove("active");
-
-    document
-    .getElementById("signupTab")
-    .classList.add("active");
+    document.getElementById("loginForm").classList.add("hidden");
+    document.getElementById("signupForm").classList.remove("hidden");
+    document.getElementById("loginTab").classList.remove("active");
+    document.getElementById("signupTab").classList.add("active");
 }
-
-
-/* =====================================================
-   SIGNUP
-===================================================== */
 
 function signup(){
+    const username = document.getElementById("signupUser").value.trim();
+    const password = document.getElementById("signupPass").value;
+    const confirm = document.getElementById("signupConfirm").value;
 
-    const username =
-        document
-        .getElementById("signupUser")
-        .value
-        .trim();
-
-    const password =
-        document
-        .getElementById("signupPass")
-        .value;
-
-    const confirm =
-        document
-        .getElementById("signupConfirm")
-        .value;
-
-
-    if(username.length < 3){
-
-        alert("Username must be at least 3 characters.");
-
-        return;
-    }
-
-
-    if(password.length < 4){
-
-        alert("Password must be at least 4 characters.");
-
-        return;
-    }
-
-
-    if(password !== confirm){
-
-        alert("Passwords do not match.");
-
-        return;
-    }
-
+    if(username.length < 3){ alert("Username must be at least 3 characters."); return; }
+    if(password.length < 4){ alert("Password must be at least 4 characters."); return; }
+    if(password !== confirm){ alert("Passwords do not match."); return; }
 
     const users = getUsers();
-
-
-    if(users[username]){
-
-        alert("❌ Username already exists.");
-
-        return;
-    }
-
+    if(users[username]){ alert("❌ Username already exists."); return; }
 
     users[username] = {
-
-        password:password,
-
-        notes:[],
-
-        todos:[],
-
-        created:new Date().toISOString()
-
+        password: password,
+        notes: [],
+        todos: [],
+        points: 0,
+        pomodoros: 0,
+        created: new Date().toISOString()
     };
 
-
     saveUsers(users);
-
-
-    /*
-       IMPORTANT:
-       New account does NOT automatically bypass
-       the authentication flow.
-       We send the user to Login.
-    */
-
-    alert(
-        "✅ Account created successfully!\n\nPlease login with your new account."
-    );
-
-
-    document
-    .getElementById("loginUser")
-    .value = username;
-
-    document
-    .getElementById("loginPass")
-    .value = "";
-
+    alert("✅ Account created successfully!\nPlease login with your new account.");
+    document.getElementById("loginUser").value = username;
+    document.getElementById("loginPass").value = "";
     showLogin();
-
 }
-
-
-/* =====================================================
-   LOGIN
-===================================================== */
 
 function login(){
-
-    const username =
-        document
-        .getElementById("loginUser")
-        .value
-        .trim();
-
-    const password =
-        document
-        .getElementById("loginPass")
-        .value;
-
-
+    const username = document.getElementById("loginUser").value.trim();
+    const password = document.getElementById("loginPass").value;
     const users = getUsers();
 
-
-    if(!users[username]){
-
-        alert(
-            "❌ Account not found.\nPlease Sign Up first."
-        );
-
-        return;
-    }
-
-
-    if(users[username].password !== password){
-
-        alert("❌ Incorrect password.");
-
-        return;
-    }
-
+    if(!users[username]){ alert("❌ Account not found.\nPlease Sign Up first."); return; }
+    if(users[username].password !== password){ alert("❌ Incorrect password."); return; }
 
     currentUser = username;
-
-
-    /*
-       Create temporary login session.
-       This is NOT treated as a secure authentication
-       mechanism for a real production website.
-    */
-
-    sessionStorage.setItem(
-        "nova_logged_in",
-        "true"
-    );
-
-
-    /*
-       If PIN exists:
-       Login -> PIN
-    */
+    sessionStorage.setItem("nova_logged_in", "true");
 
     if(getPIN()){
-
         showPINTGate();
-
-    }else{
-
+    } else {
         showDashboard();
-
     }
-
 }
-
-
-/* =====================================================
-   SHOW PIN GATE
-===================================================== */
 
 function showPINTGate(){
-
-    document
-    .getElementById("authScreen")
-    .classList.add("hidden");
-
-    document
-    .getElementById("app")
-    .classList.add("hidden");
-
-    document
-    .getElementById("pinGate")
-    .classList.remove("hidden");
-
-    document
-    .getElementById("gatePin")
-    .value = "";
-
-    document
-    .getElementById("pinError")
-    .textContent = "";
-
-    setTimeout(()=>{
-
-        document
-        .getElementById("gatePin")
-        .focus();
-
-    },100);
-
+    document.getElementById("authScreen").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("pinGate").classList.remove("hidden");
+    document.getElementById("gatePin").value = "";
+    document.getElementById("pinError").textContent = "";
+    setTimeout(() => document.getElementById("gatePin").focus(), 100);
 }
-
-
-/* =====================================================
-   PIN UNLOCK
-===================================================== */
 
 function unlockWithPIN(){
-
-    const entered =
-        document
-        .getElementById("gatePin")
-        .value
-        .trim();
-
+    const entered = document.getElementById("gatePin").value.trim();
     const correct = getPIN();
 
-
-    if(!correct){
-
+    if(!correct || entered === correct){
         showDashboard();
-
-        return;
+    } else {
+        document.getElementById("pinError").textContent = "❌ Incorrect PIN.";
+        document.getElementById("gatePin").value = "";
     }
-
-
-    if(entered !== correct){
-
-        document
-        .getElementById("pinError")
-        .textContent =
-        "❌ Incorrect PIN.";
-
-        document
-        .getElementById("gatePin")
-        .value = "";
-
-        return;
-    }
-
-
-    showDashboard();
-
 }
-
-
-/* =====================================================
-   SHOW DASHBOARD
-===================================================== */
 
 function showDashboard(){
-
-    document
-    .getElementById("authScreen")
-    .classList.add("hidden");
-
-    document
-    .getElementById("pinGate")
-    .classList.add("hidden");
-
-    document
-    .getElementById("app")
-    .classList.remove("hidden");
-
-
+    document.getElementById("authScreen").classList.add("hidden");
+    document.getElementById("pinGate").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
     updateUserUI();
-
     loadNotes();
-
     loadTodos();
-
     updatePINStatus();
-
 }
-
-
-/* =====================================================
-   BACK TO LOGIN
-===================================================== */
 
 function backToLogin(){
-
     currentUser = null;
-
-    sessionStorage.removeItem(
-        "nova_logged_in"
-    );
-
-
-    document
-    .getElementById("pinGate")
-    .classList.add("hidden");
-
-    document
-    .getElementById("app")
-    .classList.add("hidden");
-
-    document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
-
+    sessionStorage.removeItem("nova_logged_in");
+    document.getElementById("pinGate").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("authScreen").classList.remove("hidden");
     showLogin();
-
 }
-
-
-/* =====================================================
-   LOGOUT
-===================================================== */
 
 function logout(){
-
     currentUser = null;
-
-    sessionStorage.removeItem(
-        "nova_logged_in"
-    );
-
-
-    document
-    .getElementById("app")
-    .classList.add("hidden");
-
-    document
-    .getElementById("pinGate")
-    .classList.add("hidden");
-
-    document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
-
-
-    document
-    .getElementById("loginUser")
-    .value = "";
-
-    document
-    .getElementById("loginPass")
-    .value = "";
-
+    sessionStorage.removeItem("nova_logged_in");
+    document.getElementById("app").classList.add("hidden");
+    document.getElementById("pinGate").classList.add("hidden");
+    document.getElementById("authScreen").classList.remove("hidden");
+    document.getElementById("loginUser").value = "";
+    document.getElementById("loginPass").value = "";
     showLogin();
-
 }
-
-
-/* =====================================================
-   USER UI
-===================================================== */
 
 function updateUserUI(){
+    if(!currentUser) return;
+    const data = getData();
+    document.getElementById("welcomeName").textContent = currentUser;
+    document.getElementById("miniName").textContent = currentUser;
+    document.getElementById("profileName").textContent = currentUser;
+    document.getElementById("profileUsername").value = currentUser;
+    document.getElementById("profilePoints").textContent = `⭐ ${data.points || 0} Points`;
+    document.getElementById("dashPoints").textContent = data.points || 0;
+    document.getElementById("studyPoints").textContent = data.points || 0;
+    document.getElementById("studySessions").textContent = data.pomodoros || 0;
 
-    if(!currentUser)return;
-
-
-    document
-    .getElementById("welcomeName")
-    .textContent = currentUser;
-
-
-    document
-    .getElementById("miniName")
-    .textContent = currentUser;
-
-
-    document
-    .getElementById("profileName")
-    .textContent = currentUser;
-
-
-    document
-    .getElementById("profileUsername")
-    .value = currentUser;
-
-
-    const letter =
-        currentUser
-        .charAt(0)
-        .toUpperCase();
-
-
-    document
-    .getElementById("miniAvatar")
-    .textContent = letter;
-
-
-    document
-    .getElementById("bigAvatar")
-    .textContent = letter;
-
+    const letter = currentUser.charAt(0).toUpperCase();
+    document.getElementById("miniAvatar").textContent = letter;
+    document.getElementById("bigAvatar").textContent = letter;
 }
-
-
-/* =====================================================
-   PROFILE
-===================================================== */
 
 function saveProfile(){
-
-    const newName =
-        document
-        .getElementById("profileUsername")
-        .value
-        .trim();
-
-
-    if(newName.length < 3){
-
-        alert("Username must be at least 3 characters.");
-
-        return;
-    }
-
+    const newName = document.getElementById("profileUsername").value.trim();
+    if(newName.length < 3){ alert("Username must be at least 3 characters."); return; }
 
     const users = getUsers();
-
-
-    if(
-        newName !== currentUser &&
-        users[newName]
-    ){
-
-        alert("Username already exists.");
-
-        return;
-    }
-
-
-    if(newName === currentUser){
-
-        alert("Profile saved.");
-
-        return;
-    }
-
+    if(newName !== currentUser && users[newName]){ alert("Username already exists."); return; }
+    if(newName === currentUser){ alert("Profile saved."); return; }
 
     const data = users[currentUser];
-
-
     delete users[currentUser];
-
     users[newName] = data;
-
     saveUsers(users);
 
-
-    /*
-       Update PIN key if username changes.
-    */
-
-    const pins = JSON.parse(
-        localStorage.getItem("nova_pins") || "{}"
-    );
-
-
+    const pins = JSON.parse(localStorage.getItem("nova_pins") || "{}");
     if(pins[currentUser]){
-
         pins[newName] = pins[currentUser];
-
         delete pins[currentUser];
-
-        localStorage.setItem(
-            "nova_pins",
-            JSON.stringify(pins)
-        );
-
+        localStorage.setItem("nova_pins", JSON.stringify(pins));
     }
-
 
     currentUser = newName;
-
     updateUserUI();
-
     alert("✅ Profile updated.");
-
 }
 
+/* ================= NAVIGATION ================= */
+function openPage(page, button){
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    const target = document.getElementById(page);
+    if(target) target.classList.add("active");
 
-/* =====================================================
-   PAGE NAVIGATION
-===================================================== */
+    document.querySelectorAll(".nav button").forEach(b => b.classList.remove("active"));
+    if(button) button.classList.add("active");
 
-function openPage(page,button){
-
-    document
-    .querySelectorAll(".page")
-    .forEach(p=>{
-        p.classList.remove("active");
-    });
-
-
-    const target =
-        document.getElementById(page);
-
-
-    if(target){
-        target.classList.add("active");
-    }
-
-
-    document
-    .querySelectorAll(".nav button")
-    .forEach(b=>{
-        b.classList.remove("active");
-    });
-
-
-    if(button){
-        button.classList.add("active");
-    }
-
-
-    if(page === "pin"){
-        updatePINStatus();
-    }
-
+    if(page === "pin") updatePINStatus();
+    if(page === "study" || page === "profile" || page === "dashboard") updateUserUI();
 }
-
 
 function openPageByName(page){
-
-    const buttons =
-        [...document.querySelectorAll(".nav button")];
-
-
-    const button =
-        buttons.find(b=>{
-
-            const onclick =
-                b.getAttribute("onclick") || "";
-
-            return onclick.includes(
-                "'" + page + "'"
-            );
-
-        });
-
-
-    openPage(page,button);
-
+    const buttons = [...document.querySelectorAll(".nav button")];
+    const button = buttons.find(b => {
+        const onclick = b.getAttribute("onclick") || "";
+        return onclick.includes("'" + page + "'");
+    });
+    openPage(page, button);
 }
-
-
-/* =====================================================
-   THEME
-===================================================== */
 
 function toggleTheme(){
-
-    document
-    .body
-    .classList
-    .toggle("light");
-
-
-    localStorage.setItem(
-        "nova_theme",
-        document.body.classList.contains("light")
-        ? "light"
-        : "dark"
-    );
-
+    document.body.classList.toggle("light");
+    localStorage.setItem("nova_theme", document.body.classList.contains("light") ? "light" : "dark");
 }
 
-
-if(
-    localStorage.getItem("nova_theme")
-    === "light"
-){
-
+if(localStorage.getItem("nova_theme") === "light"){
     document.body.classList.add("light");
-
 }
 
-
-/* =====================================================
-   PIN SYSTEM
-===================================================== */
-
+/* ================= PIN SYSTEM ================= */
 function getPIN(){
-
-    const pins =
-        JSON.parse(
-            localStorage.getItem("nova_pins")
-            || "{}"
-        );
-
-
+    const pins = JSON.parse(localStorage.getItem("nova_pins") || "{}");
     return pins[currentUser] || null;
-
 }
-
 
 function savePIN(){
+    const pin = document.getElementById("newPin").value.trim();
+    if(!/^\d{4,6}$/.test(pin)){ alert("PIN must contain 4 to 6 digits."); return; }
 
-    const pin =
-        document
-        .getElementById("newPin")
-        .value
-        .trim();
-
-
-    if(!/^\d{4,6}$/.test(pin)){
-
-        alert(
-            "PIN must contain 4 to 6 digits."
-        );
-
-        return;
-    }
-
-
-    const pins =
-        JSON.parse(
-            localStorage.getItem("nova_pins")
-            || "{}"
-        );
-
-
+    const pins = JSON.parse(localStorage.getItem("nova_pins") || "{}");
     pins[currentUser] = pin;
-
-
-    localStorage.setItem(
-        "nova_pins",
-        JSON.stringify(pins)
-    );
-
-
-    document
-    .getElementById("newPin")
-    .value = "";
-
-
+    localStorage.setItem("nova_pins", JSON.stringify(pins));
+    document.getElementById("newPin").value = "";
     updatePINStatus();
-
-
-    alert(
-        "🔒 PIN saved successfully!"
-    );
-
+    alert("🔒 PIN saved successfully!");
 }
-
 
 function removePIN(){
-
-    const pins =
-        JSON.parse(
-            localStorage.getItem("nova_pins")
-            || "{}"
-        );
-
-
-    if(!pins[currentUser]){
-
-        alert("No PIN is currently set.");
-
-        return;
-    }
-
-
-    const confirmRemove =
-        confirm(
-            "Remove PIN protection?"
-        );
-
-
-    if(!confirmRemove)return;
-
+    const pins = JSON.parse(localStorage.getItem("nova_pins") || "{}");
+    if(!pins[currentUser]){ alert("No PIN is currently set."); return; }
+    if(!confirm("Remove PIN protection?")) return;
 
     delete pins[currentUser];
-
-
-    localStorage.setItem(
-        "nova_pins",
-        JSON.stringify(pins)
-    );
-
-
+    localStorage.setItem("nova_pins", JSON.stringify(pins));
     updatePINStatus();
-
-
-    alert(
-        "🔓 PIN protection removed."
-    );
-
+    alert("🔓 PIN protection removed.");
 }
-
 
 function updatePINStatus(){
-
-    const status =
-        document.getElementById("pinStatus");
-
-
-    if(!status)return;
-
-
-    if(getPIN()){
-
-        status.innerHTML =
-        "🔒 <b>PIN Lock is enabled.</b>";
-
-    }else{
-
-        status.innerHTML =
-        "🔓 PIN Lock is disabled.";
-
-    }
-
+    const status = document.getElementById("pinStatus");
+    if(!status) return;
+    status.innerHTML = getPIN() ? "🔒 <b>PIN Lock is enabled.</b>" : "🔓 PIN Lock is disabled.";
 }
 
-
-/* =====================================================
-   NOTES
-===================================================== */
-
+/* ================= NOTES ================= */
 function addNote(){
-
-    const title =
-        document
-        .getElementById("noteTitle")
-        .value
-        .trim();
-
-
-    const text =
-        document
-        .getElementById("noteText")
-        .value
-        .trim();
-
-
-    if(!title || !text){
-
-        alert(
-            "Please enter title and note."
-        );
-
-        return;
-    }
-
+    const title = document.getElementById("noteTitle").value.trim();
+    const text = document.getElementById("noteText").value.trim();
+    if(!title || !text){ alert("Please enter title and note."); return; }
 
     const data = getData();
-
-
-    data.notes.push({
-
-        title:title,
-
-        text:text,
-
-        date:new Date().toLocaleString()
-
-    });
-
-
+    data.notes.push({ title, text, date: new Date().toLocaleString() });
     updateData(data);
 
-
-    document
-    .getElementById("noteTitle")
-    .value = "";
-
-    document
-    .getElementById("noteText")
-    .value = "";
-
-
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteText").value = "";
     loadNotes();
-
 }
-
 
 function loadNotes(){
-
-    if(!currentUser)return;
-
-
+    if(!currentUser) return;
     const data = getData();
-
-    const list =
-        document.getElementById("notesList");
-
-
+    const list = document.getElementById("notesList");
     list.innerHTML = "";
 
-
-    data.notes.forEach((note,index)=>{
-
+    data.notes.forEach((note, index) => {
         list.innerHTML += `
-
         <div class="note">
-
-            <h3>
-                ${escapeHTML(note.title)}
-            </h3>
-
-            <p>
-                ${escapeHTML(note.text)}
-            </p>
-
+            <h3>${escapeHTML(note.title)}</h3>
+            <p>${escapeHTML(note.text)}</p>
             <br>
-
-            <small style="color:var(--muted)">
-                ${note.date}
-            </small>
-
+            <small style="color:var(--muted)">${note.date}</small>
             <br><br>
-
-            <button
-            class="smallBtn dangerBtn"
-            onclick="deleteNote(${index})">
-
-                Delete
-
-            </button>
-
+            <button class="smallBtn" onclick="speakText('${escapeHTML(note.text)}')">🗣️ Read</button>
+            <button class="smallBtn dangerBtn" onclick="deleteNote(${index})">Delete</button>
         </div>
-
         `;
-
     });
-
-
-    document
-    .getElementById("noteCount")
-    .textContent = data.notes.length;
-
+    document.getElementById("noteCount").textContent = data.notes.length;
 }
-
 
 function deleteNote(index){
-
     const data = getData();
-
-
-    data.notes.splice(index,1);
-
-
+    data.notes.splice(index, 1);
     updateData(data);
-
-
     loadNotes();
-
 }
 
-
-/* =====================================================
-   TODO
-===================================================== */
-
+/* ================= TODO ================= */
 function addTodo(){
-
-    const input =
-        document.getElementById("todoInput");
-
-
-    const text =
-        input.value.trim();
-
-
-    if(!text)return;
-
+    const input = document.getElementById("todoInput");
+    const text = input.value.trim();
+    if(!text) return;
 
     const data = getData();
-
-
-    data.todos.push({
-
-        text:text,
-
-        done:false
-
-    });
-
-
+    data.todos.push({ text, done: false });
     updateData(data);
-
-
     input.value = "";
-
-
     loadTodos();
-
 }
-
 
 function loadTodos(){
-
-    if(!currentUser)return;
-
-
+    if(!currentUser) return;
     const data = getData();
-
-    const list =
-        document.getElementById("todoList");
-
-
+    const list = document.getElementById("todoList");
     list.innerHTML = "";
 
-
-    data.todos.forEach((todo,index)=>{
-
+    data.todos.forEach((todo, index) => {
         list.innerHTML += `
-
-        <div
-        class="todoItem ${todo.done ? "done" : ""}">
-
-            <span>
-                ${escapeHTML(todo.text)}
-            </span>
-
+        <div class="todoItem ${todo.done ? "done" : ""}">
+            <span>${escapeHTML(todo.text)}</span>
             <div>
-
-                <button
-                class="smallBtn"
-                onclick="toggleTodo(${index})">
-                    ✓
-                </button>
-
-                <button
-                class="smallBtn dangerBtn"
-                onclick="deleteTodo(${index})">
-                    ×
-                </button>
-
+                <button class="smallBtn" onclick="toggleTodo(${index})">✓</button>
+                <button class="smallBtn dangerBtn" onclick="deleteTodo(${index})">×</button>
             </div>
-
         </div>
-
         `;
-
     });
-
-
-    document
-    .getElementById("taskCount")
-    .textContent = data.todos.length;
-
+    document.getElementById("taskCount").textContent = data.todos.length;
 }
-
 
 function toggleTodo(index){
-
     const data = getData();
-
-
-    data.todos[index].done =
-        !data.todos[index].done;
-
-
+    data.todos[index].done = !data.todos[index].done;
     updateData(data);
-
-
     loadTodos();
-
 }
-
 
 function deleteTodo(index){
-
     const data = getData();
-
-
-    data.todos.splice(index,1);
-
-
+    data.todos.splice(index, 1);
     updateData(data);
-
-
     loadTodos();
-
 }
 
+/* ================= BACKUP & RESTORE ================= */
+function exportData(){
+    const data = getData();
+    const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(data, null, 2));
+    const dlAnchor = document.createElement("a");
+    dlAnchor.setAttribute("href", jsonStr);
+    dlAnchor.setAttribute("download", `${currentUser}_novatools_backup.json`);
+    dlAnchor.click();
+}
 
-/* =====================================================
-   TOOL MODAL
-===================================================== */
+function importData(e){
+    const file = e.target.files[0];
+    if(!file) return;
 
+    const reader = new FileReader();
+    reader.onload = function(evt){
+        try {
+            const imported = JSON.parse(evt.target.result);
+            if(imported && typeof imported === 'object'){
+                updateData(imported);
+                loadNotes();
+                loadTodos();
+                updateUserUI();
+                alert("✅ Data imported successfully!");
+            }
+        } catch(err) {
+            alert("❌ Invalid JSON file.");
+        }
+    };
+    reader.readAsText(file);
+}
+
+/* ================= TEXT TO SPEECH ================= */
+function speakText(txt){
+    if(!txt){
+        const input = document.getElementById("ttsInput");
+        txt = input ? input.value : "";
+    }
+    if(!txt) return;
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(txt);
+    window.speechSynthesis.speak(utterance);
+}
+
+/* ================= MODAL TOOLS ================= */
 function openTool(type){
-
-    const modal =
-        document.getElementById("toolModal");
-
-
-    const title =
-        document.getElementById("modalTitle");
-
-
-    const content =
-        document.getElementById("modalContent");
-
-
+    const modal = document.getElementById("toolModal");
+    const title = document.getElementById("modalTitle");
+    const content = document.getElementById("modalContent");
     modal.classList.remove("hidden");
 
-
     if(type === "calculator"){
-
-        title.textContent =
-            "🧮 Calculator";
-
-
+        title.textContent = "🧮 Calculator";
         content.innerHTML = `
-
-        <input
-        id="calcDisplay"
-        class="calcDisplay"
-        readonly>
-
-
+        <input id="calcDisplay" class="calcDisplay" readonly>
         <div class="calcGrid">
-
             <button onclick="calcClear()">C</button>
-
             <button onclick="calcAdd('/')">÷</button>
-
             <button onclick="calcAdd('*')">×</button>
-
             <button onclick="calcBack()">⌫</button>
-
-
             <button onclick="calcAdd('7')">7</button>
-
             <button onclick="calcAdd('8')">8</button>
-
             <button onclick="calcAdd('9')">9</button>
-
             <button onclick="calcAdd('-')">−</button>
-
-
             <button onclick="calcAdd('4')">4</button>
-
             <button onclick="calcAdd('5')">5</button>
-
             <button onclick="calcAdd('6')">6</button>
-
             <button onclick="calcAdd('+')">+</button>
-
-
             <button onclick="calcAdd('1')">1</button>
-
             <button onclick="calcAdd('2')">2</button>
-
             <button onclick="calcAdd('3')">3</button>
-
             <button onclick="calcEqual()">=</button>
-
-
             <button onclick="calcAdd('0')">0</button>
-
             <button onclick="calcAdd('.')">.</button>
-
             <button onclick="calcAdd('%')">%</button>
-
             <button onclick="calcEqual()">Enter</button>
-
-        </div>
-
-        `;
-
+        </div>`;
     }
 
-
-    else if(type === "stopwatch"){
-
-        title.textContent =
-            "⏱️ Stopwatch";
-
-
+    else if(type === "bmi"){
+        title.textContent = "⚖️ BMI Calculator";
         content.innerHTML = `
-
-        <div
-        class="timerDisplay"
-        id="stopwatchDisplay">
-
-            00:00:00
-
-        </div>
-
-
-        <div class="timerButtons">
-
-            <button
-            class="smallBtn"
-            onclick="startStopwatch()">
-                Start
-            </button>
-
-            <button
-            class="smallBtn"
-            onclick="pauseStopwatch()">
-                Pause
-            </button>
-
-            <button
-            class="smallBtn dangerBtn"
-            onclick="resetStopwatch()">
-                Reset
-            </button>
-
-        </div>
-
-        `;
-
-    }
-
-
-    else if(type === "timer"){
-
-        title.textContent =
-            "⏳ Countdown Timer";
-
-
-        content.innerHTML = `
-
         <div class="inputGroup">
-
-            <label>
-                Seconds
-            </label>
-
-            <input
-            id="timerSeconds"
-            type="number"
-            value="60"
-            min="1">
-
+            <label>Weight (kg)</label>
+            <input id="bmiWeight" type="number" placeholder="e.g. 50">
         </div>
-
-
-        <div
-        class="timerDisplay"
-        id="timerDisplay">
-
-            60
-
-        </div>
-
-
-        <div class="timerButtons">
-
-            <button
-            class="smallBtn"
-            onclick="startTimer()">
-                Start
-            </button>
-
-            <button
-            class="smallBtn dangerBtn"
-            onclick="resetTimer()">
-                Reset
-            </button>
-
-        </div>
-
-        `;
-
-    }
-
-
-    else if(type === "calendar"){
-
-        title.textContent =
-            "📅 Calendar";
-
-
-        const now = new Date();
-
-
-        content.innerHTML = `
-
-        <div
-        class="panel"
-        style="margin:0;text-align:center;">
-
-            <h2>
-                ${now.toLocaleString(
-                    "default",
-                    {month:"long"}
-                )}
-                ${now.getFullYear()}
-            </h2>
-
-            <br>
-
-            <input
-            type="date"
-            style="
-            padding:13px;
-            width:100%;
-            border-radius:10px;
-            border:1px solid var(--border);
-            background:var(--card2);
-            color:var(--text);">
-
-        </div>
-
-        `;
-
-    }
-
-
-    else if(type === "converter"){
-
-        title.textContent =
-            "📏 Unit Converter";
-
-
-        content.innerHTML = `
-
         <div class="inputGroup">
-
-            <label>
-                Kilometers
-            </label>
-
-            <input
-            id="kmValue"
-            type="number"
-            oninput="convertKM()">
-
+            <label>Height (cm)</label>
+            <input id="bmiHeight" type="number" placeholder="e.g. 155">
         </div>
-
-
-        <div class="stat">
-
-            <h3 id="meterResult">
-                0
-            </h3>
-
-            <p>
-                Meters
-            </p>
-
-        </div>
-
-
-        <br>
-
-
-        <div class="stat">
-
-            <h3 id="mileResult">
-                0
-            </h3>
-
-            <p>
-                Miles
-            </p>
-
-        </div>
-
+        <button class="smallBtn" onclick="calcBMI()">Calculate BMI</button>
+        <div id="bmiResult" style="margin-top:20px;text-align:center;"></div>
         `;
-
     }
 
-
-    else if(type === "password"){
-
-        title.textContent =
-            "🔑 Password Generator";
-
-
+    else if(type === "tts"){
+        title.textContent = "🗣️ Text to Speech";
         content.innerHTML = `
-
         <div class="inputGroup">
-
-            <label>
-                Password Length
-            </label>
-
-            <input
-            id="passLength"
-            type="number"
-            value="16"
-            min="4"
-            max="50">
-
+            <label>Enter Text</label>
+            <textarea id="ttsInput" rows="5" placeholder="Type anything to listen..."></textarea>
         </div>
-
-
-        <button
-        class="smallBtn"
-        onclick="generatePassword()">
-            Generate
-        </button>
-
-
-        <br><br>
-
-
-        <input
-        id="generatedPassword"
-        readonly
-        style="
-        width:100%;
-        padding:14px;
-        border-radius:12px;
-        border:1px solid var(--border);
-        background:var(--card2);
-        color:var(--text);">
-
+        <button class="smallBtn" onclick="speakText()">🔊 Speak</button>
         `;
-
     }
-
-
-    else if(type === "random"){
-
-        title.textContent =
-            "🎲 Random Generator";
-
-
-        content.innerHTML = `
-
-        <div class="inputGroup">
-
-            <label>
-                Minimum
-            </label>
-
-            <input
-            id="randMin"
-            type="number"
-            value="1">
-
-        </div>
-
-
-        <div class="inputGroup">
-
-            <label>
-                Maximum
-            </label>
-
-            <input
-            id="randMax"
-            type="number"
-            value="100">
-
-        </div>
-
-
-        <button
-        class="smallBtn"
-        onclick="randomNumber()">
-            Generate
-        </button>
-
-
-        <h2
-        id="randomResult"
-        style="
-        text-align:center;
-        margin-top:25px;">
-            ?
-        </h2>
-
-        `;
-
-    }
-
-
-    else if(type === "pomodoro"){
-
-        title.textContent =
-            "🍅 Pomodoro";
-
-
-        content.innerHTML = `
-
-        <div
-        class="timerDisplay"
-        id="pomodoroDisplay">
-
-            25:00
-
-        </div>
-
-
-        <div class="timerButtons">
-
-            <button
-            class="smallBtn"
-            onclick="startPomodoro()">
-                Start
-            </button>
-
-            <button
-            class="smallBtn dangerBtn"
-            onclick="resetPomodoro()">
-                Reset
-            </button>
-
-        </div>
-
-        `;
-
-    }
-
 
     else if(type === "qr"){
-
-        title.textContent =
-            "🔳 QR Generator";
-
-
+        title.textContent = "🔳 Real QR Generator";
         content.innerHTML = `
-
         <div class="inputGroup">
-
-            <label>
-                Text / URL
-            </label>
-
-            <input
-            id="qrText"
-            placeholder="Enter text or URL">
-
+            <label>Text / URL</label>
+            <input id="qrText" placeholder="Enter link or text">
         </div>
-
-
-        <button
-        class="smallBtn"
-        onclick="generateQR()">
-            Generate QR
-        </button>
-
-
-        <div
-        id="qrResult"
-        style="
-        text-align:center;
-        margin-top:20px;">
-        </div>
-
+        <button class="smallBtn" onclick="generateRealQR()">Generate QR</button>
+        <div id="qrResult" style="text-align:center;margin-top:20px;"></div>
         `;
-
     }
 
+    else if(type === "pomodoro"){
+        title.textContent = "🍅 Study Pomodoro";
+        content.innerHTML = `
+        <div class="timerDisplay" id="pomodoroDisplay">25:00</div>
+        <div class="timerButtons">
+            <button class="smallBtn" onclick="startPomodoro()">Start</button>
+            <button class="smallBtn dangerBtn" onclick="resetPomodoro()">Reset</button>
+        </div>
+        `;
+    }
+
+    else if(type === "stopwatch"){
+        title.textContent = "⏱️ Stopwatch";
+        content.innerHTML = `
+        <div class="timerDisplay" id="stopwatchDisplay">00:00:00</div>
+        <div class="timerButtons">
+            <button class="smallBtn" onclick="startStopwatch()">Start</button>
+            <button class="smallBtn" onclick="pauseStopwatch()">Pause</button>
+            <button class="smallBtn dangerBtn" onclick="resetStopwatch()">Reset</button>
+        </div>
+        `;
+    }
+
+    else if(type === "timer"){
+        title.textContent = "⏳ Countdown Timer";
+        content.innerHTML = `
+        <div class="inputGroup">
+            <label>Seconds</label>
+            <input id="timerSeconds" type="number" value="60" min="1">
+        </div>
+        <div class="timerDisplay" id="timerDisplay">60</div>
+        <div class="timerButtons">
+            <button class="smallBtn" onclick="startTimer()">Start</button>
+            <button class="smallBtn dangerBtn" onclick="resetTimer()">Reset</button>
+        </div>
+        `;
+    }
+
+    else if(type === "calendar"){
+        title.textContent = "📅 Calendar";
+        const now = new Date();
+        content.innerHTML = `
+        <div class="panel" style="margin:0;text-align:center;">
+            <h2>${now.toLocaleString("default", {month:"long"})} ${now.getFullYear()}</h2>
+            <br>
+            <input type="date" style="padding:13px;width:100%;border-radius:10px;border:1px solid var(--border);background:var(--card2);color:var(--text);">
+        </div>
+        `;
+    }
+
+    else if(type === "converter"){
+        title.textContent = "📏 Unit Converter";
+        content.innerHTML = `
+        <div class="inputGroup">
+            <label>Kilometers</label>
+            <input id="kmValue" type="number" oninput="convertKM()">
+        </div>
+        <div class="stat"><h3 id="meterResult">0</h3><p>Meters</p></div>
+        <br>
+        <div class="stat"><h3 id="mileResult">0</h3><p>Miles</p></div>
+        `;
+    }
+
+    else if(type === "password"){
+        title.textContent = "🔑 Password Generator";
+        content.innerHTML = `
+        <div class="inputGroup">
+            <label>Password Length</label>
+            <input id="passLength" type="number" value="16" min="4" max="50">
+        </div>
+        <button class="smallBtn" onclick="generatePassword()">Generate</button>
+        <br><br>
+        <input id="generatedPassword" readonly style="width:100%;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--card2);color:var(--text);">
+        `;
+    }
+
+    else if(type === "random"){
+        title.textContent = "🎲 Random Generator";
+        content.innerHTML = `
+        <div class="inputGroup"><label>Minimum</label><input id="randMin" type="number" value="1"></div>
+        <div class="inputGroup"><label>Maximum</label><input id="randMax" type="number" value="100"></div>
+        <button class="smallBtn" onclick="randomNumber()">Generate</button>
+        <h2 id="randomResult" style="text-align:center;margin-top:25px;">?</h2>
+        `;
+    }
 
     else if(type === "color"){
-
-        title.textContent =
-            "🎨 Color Picker";
-
-
+        title.textContent = "🎨 Color Picker";
         content.innerHTML = `
-
-        <input
-        type="color"
-        id="colorPicker"
-        value="#6c63ff"
-        style="
-        width:100%;
-        height:100px;">
-
-
-        <h2
-        id="colorValue"
-        style="
-        text-align:center;
-        margin-top:20px;">
-            #6C63FF
-        </h2>
-
+        <input type="color" id="colorPicker" value="#6c63ff" style="width:100%;height:100px;">
+        <h2 id="colorValue" style="text-align:center;margin-top:20px;">#6C63FF</h2>
         `;
-
-
-        setTimeout(()=>{
-
-            const picker =
-                document.getElementById(
-                    "colorPicker"
-                );
-
-
-            picker.addEventListener(
-                "input",
-                function(){
-
-                    document
-                    .getElementById("colorValue")
-                    .textContent =
-                        this.value.toUpperCase();
-
-                }
-            );
-
-        },50);
-
+        setTimeout(() => {
+            const picker = document.getElementById("colorPicker");
+            if(picker){
+                picker.addEventListener("input", function(){
+                    document.getElementById("colorValue").textContent = this.value.toUpperCase();
+                });
+            }
+        }, 50);
     }
-
 
     else if(type === "text"){
-
-        title.textContent =
-            "🔤 Text Counter";
-
-
+        title.textContent = "🔤 Text Counter";
         content.innerHTML = `
-
-        <textarea
-        id="counterText"
-        rows="8"
-        placeholder="Type or paste text..."
-        style="
-        width:100%;
-        padding:14px;
-        border-radius:12px;
-        border:1px solid var(--border);
-        background:var(--card2);
-        color:var(--text);"
-        oninput="updateTextCount()">
-        </textarea>
-
-
-        <div
-        style="
-        margin-top:15px;
-        display:grid;
-        grid-template-columns:1fr 1fr;
-        gap:10px;">
-
-            <div class="stat">
-
-                <h3 id="charCount">
-                    0
-                </h3>
-
-                <p>
-                    Characters
-                </p>
-
-            </div>
-
-
-            <div class="stat">
-
-                <h3 id="wordCount">
-                    0
-                </h3>
-
-                <p>
-                    Words
-                </p>
-
-            </div>
-
+        <textarea id="counterText" rows="8" placeholder="Type or paste text..." style="width:100%;padding:14px;border-radius:12px;border:1px solid var(--border);background:var(--card2);color:var(--text);" oninput="updateTextCount()"></textarea>
+        <div style="margin-top:15px;display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="stat"><h3 id="charCount">0</h3><p>Characters</p></div>
+            <div class="stat"><h3 id="wordCount">0</h3><p>Words</p></div>
         </div>
-
         `;
-
     }
-
 
     else if(type === "age"){
-
-        title.textContent =
-            "🎂 Age Calculator";
-
-
+        title.textContent = "🎂 Age Calculator";
         content.innerHTML = `
-
-        <div class="inputGroup">
-
-            <label>
-                Birth Date
-            </label>
-
-            <input
-            type="date"
-            id="birthDate">
-
-        </div>
-
-
-        <button
-        class="smallBtn"
-        onclick="calculateAge()">
-            Calculate
-        </button>
-
-
-        <h2
-        id="ageResult"
-        style="
-        text-align:center;
-        margin-top:25px;">
-        </h2>
-
+        <div class="inputGroup"><label>Birth Date</label><input type="date" id="birthDate"></div>
+        <button class="smallBtn" onclick="calculateAge()">Calculate</button>
+        <h2 id="ageResult" style="text-align:center;margin-top:25px;"></h2>
         `;
-
     }
-
 
     else if(type === "clock"){
-
-        title.textContent =
-            "🕐 Digital Clock";
-
-
-        content.innerHTML = `
-
-        <div
-        class="clock"
-        id="liveClock">
-            00:00:00
-        </div>
-
-        `;
-
-
+        title.textContent = "🕐 Digital Clock";
+        content.innerHTML = `<div class="clock" id="liveClock">00:00:00</div>`;
         updateClock();
-
     }
-
 }
-
 
 function closeTool(){
-
-    document
-    .getElementById("toolModal")
-    .classList.add("hidden");
-
+    document.getElementById("toolModal").classList.add("hidden");
 }
 
+/* ================= TOOL LOGICS ================= */
+function calcBMI(){
+    const w = parseFloat(document.getElementById("bmiWeight").value);
+    const h = parseFloat(document.getElementById("bmiHeight").value) / 100;
+    if(!w || !h){ alert("Please enter weight and height."); return; }
+    const bmi = (w / (h * h)).toFixed(1);
+    let status = "";
+    if(bmi < 18.5) status = "Underweight 🔵";
+    else if(bmi < 24.9) status = "Normal weight 🟢";
+    else if(bmi < 29.9) status = "Overweight 🟡";
+    else status = "Obese 🔴";
 
-/* =====================================================
-   CALCULATOR
-===================================================== */
-
-function calcAdd(value){
-
-    const display =
-        document.getElementById(
-            "calcDisplay"
-        );
-
-    display.value += value;
-
+    document.getElementById("bmiResult").innerHTML = `<h2>BMI: ${bmi}</h2><p style="color:var(--muted);margin-top:5px;">Category: <b>${status}</b></p>`;
 }
 
-
-function calcClear(){
-
-    document
-    .getElementById("calcDisplay")
-    .value = "";
-
+function generateRealQR(){
+    const text = document.getElementById("qrText").value.trim();
+    const result = document.getElementById("qrResult");
+    if(!text){ result.innerHTML = "<p style='color:var(--muted)'>Enter text first.</p>"; return; }
+    result.innerHTML = `
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(text)}" 
+         alt="QR Code" style="border-radius:12px;background:#fff;padding:8px;"/>
+    `;
 }
 
-
-function calcBack(){
-
-    const display =
-        document.getElementById(
-            "calcDisplay"
-        );
-
-    display.value =
-        display.value.slice(0,-1);
-
-}
-
-
+function calcAdd(value){ document.getElementById("calcDisplay").value += value; }
+function calcClear(){ document.getElementById("calcDisplay").value = ""; }
+function calcBack(){ const d = document.getElementById("calcDisplay"); d.value = d.value.slice(0, -1); }
 function calcEqual(){
-
-    const display =
-        document.getElementById(
-            "calcDisplay"
-        );
-
-
-    try{
-
-        const expression =
-            display.value;
-
-
-        if(
-            !/^[0-9+\-*/%.() ]+$/
-            .test(expression)
-        ){
-
-            throw new Error();
-
-        }
-
-
-        display.value =
-            Function(
-                '"use strict";return ('+
-                expression+
-                ')'
-            )();
-
-
-    }catch{
-
-        display.value = "Error";
-
-    }
-
+    const d = document.getElementById("calcDisplay");
+    try {
+        if(!/^[0-9+\-*/%.() ]+$/.test(d.value)) throw new Error();
+        d.value = Function('"use strict";return (' + d.value + ')')();
+    } catch { d.value = "Error"; }
 }
 
-
-/* =====================================================
-   STOPWATCH
-===================================================== */
-
-let stopwatchInterval = null;
-
-let stopwatchSeconds = 0;
-
-
+let stopwatchInterval = null, stopwatchSeconds = 0;
 function updateStopwatch(){
-
-    const h =
-        Math.floor(
-            stopwatchSeconds / 3600
-        );
-
-
-    const m =
-        Math.floor(
-            (stopwatchSeconds % 3600) / 60
-        );
-
-
-    const s =
-        stopwatchSeconds % 60;
-
-
-    const el =
-        document.getElementById(
-            "stopwatchDisplay"
-        );
-
-
-    if(el){
-
-        el.textContent =
-            String(h).padStart(2,"0")+
-            ":"+
-            String(m).padStart(2,"0")+
-            ":"+
-            String(s).padStart(2,"0");
-
-    }
-
+    const h = Math.floor(stopwatchSeconds / 3600);
+    const m = Math.floor((stopwatchSeconds % 3600) / 60);
+    const s = stopwatchSeconds % 60;
+    const el = document.getElementById("stopwatchDisplay");
+    if(el) el.textContent = `${String(h).padStart(2,"0")}:${String(m).padStart(2,"0")}:${String(s).padStart(2,"0")}`;
 }
-
-
 function startStopwatch(){
-
-    if(stopwatchInterval)return;
-
-
-    stopwatchInterval =
-        setInterval(()=>{
-
-            stopwatchSeconds++;
-
-            updateStopwatch();
-
-        },1000);
-
+    if(stopwatchInterval) return;
+    stopwatchInterval = setInterval(() => { stopwatchSeconds++; updateStopwatch(); }, 1000);
 }
+function pauseStopwatch(){ clearInterval(stopwatchInterval); stopwatchInterval = null; }
+function resetStopwatch(){ pauseStopwatch(); stopwatchSeconds = 0; updateStopwatch(); }
 
-
-function pauseStopwatch(){
-
-    clearInterval(
-        stopwatchInterval
-    );
-
-    stopwatchInterval = null;
-
-}
-
-
-function resetStopwatch(){
-
-    pauseStopwatch();
-
-    stopwatchSeconds = 0;
-
-    updateStopwatch();
-
-}
-
-
-/* =====================================================
-   TIMER
-===================================================== */
-
-let timerInterval = null;
-
-let timerValue = 60;
-
-
+let timerInterval = null, timerValue = 60;
 function startTimer(){
-
     clearInterval(timerInterval);
-
-
-    timerValue =
-        parseInt(
-            document.getElementById(
-                "timerSeconds"
-            ).value
-        ) || 60;
-
-
-    timerInterval =
-        setInterval(()=>{
-
-            timerValue--;
-
-
-            const el =
-                document.getElementById(
-                    "timerDisplay"
-                );
-
-
-            if(el){
-                el.textContent =
-                    timerValue;
-            }
-
-
-            if(timerValue <= 0){
-
-                clearInterval(
-                    timerInterval
-                );
-
-                timerInterval = null;
-
-                alert(
-                    "⏰ Timer finished!"
-                );
-
-            }
-
-        },1000);
-
+    timerValue = parseInt(document.getElementById("timerSeconds").value) || 60;
+    timerInterval = setInterval(() => {
+        timerValue--;
+        const el = document.getElementById("timerDisplay");
+        if(el) el.textContent = timerValue;
+        if(timerValue <= 0){
+            clearInterval(timerInterval);
+            timerInterval = null;
+            playBeep();
+            alert("⏰ Timer finished!");
+        }
+    }, 1000);
 }
-
-
 function resetTimer(){
-
     clearInterval(timerInterval);
-
     timerInterval = null;
-
-
-    const input =
-        document.getElementById(
-            "timerSeconds"
-        );
-
-
-    timerValue =
-        parseInt(input?.value) || 60;
-
-
-    const display =
-        document.getElementById(
-            "timerDisplay"
-        );
-
-
-    if(display){
-
-        display.textContent =
-            timerValue;
-
-    }
-
+    timerValue = parseInt(document.getElementById("timerSeconds")?.value) || 60;
+    const d = document.getElementById("timerDisplay");
+    if(d) d.textContent = timerValue;
 }
 
-
-/* =====================================================
-   PASSWORD
-===================================================== */
+let pomoInterval = null, pomoSeconds = 1500;
+function updatePomodoro(){
+    const min = Math.floor(pomoSeconds / 60);
+    const sec = pomoSeconds % 60;
+    const el = document.getElementById("pomodoroDisplay");
+    if(el) el.textContent = `${String(min).padStart(2,"0")}:${String(sec).padStart(2,"0")}`;
+}
+function startPomodoro(){
+    if(pomoInterval) return;
+    pomoInterval = setInterval(() => {
+        pomoSeconds--;
+        updatePomodoro();
+        if(pomoSeconds <= 0){
+            clearInterval(pomoInterval);
+            pomoInterval = null;
+            playBeep();
+            const data = getData();
+            data.points = (data.points || 0) + 10;
+            data.pomodoros = (data.pomodoros || 0) + 1;
+            updateData(data);
+            updateUserUI();
+            alert("🍅 Pomodoro Complete! +10 Study Points earned!");
+        }
+    }, 1000);
+}
+function resetPomodoro(){ clearInterval(pomoInterval); pomoInterval = null; pomoSeconds = 1500; updatePomodoro(); }
 
 function generatePassword(){
-
-    const length =
-        parseInt(
-            document.getElementById(
-                "passLength"
-            ).value
-        ) || 16;
-
-
-    const chars =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"+
-        "abcdefghijklmnopqrstuvwxyz"+
-        "0123456789"+
-        "!@#$%^&*";
-
-
-    let password = "";
-
-
-    for(
-        let i=0;
-        i<length;
-        i++
-    ){
-
-        password +=
-            chars[
-                Math.floor(
-                    Math.random()*
-                    chars.length
-                )
-            ];
-
-    }
-
-
-    document
-    .getElementById(
-        "generatedPassword"
-    )
-    .value = password;
-
+    const length = parseInt(document.getElementById("passLength").value) || 16;
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+    let pwd = "";
+    for(let i = 0; i < length; i++) pwd += chars[Math.floor(Math.random() * chars.length)];
+    document.getElementById("generatedPassword").value = pwd;
 }
-
-
-/* =====================================================
-   RANDOM
-===================================================== */
 
 function randomNumber(){
-
-    let min =
-        parseInt(
-            document.getElementById(
-                "randMin"
-            ).value
-        );
-
-
-    let max =
-        parseInt(
-            document.getElementById(
-                "randMax"
-            ).value
-        );
-
-
-    if(min > max){
-
-        [min,max] = [max,min];
-
-    }
-
-
-    const result =
-        Math.floor(
-            Math.random()*
-            (max-min+1)
-        )+min;
-
-
-    document
-    .getElementById(
-        "randomResult"
-    )
-    .textContent = result;
-
+    let min = parseInt(document.getElementById("randMin").value);
+    let max = parseInt(document.getElementById("randMax").value);
+    if(min > max) [min, max] = [max, min];
+    document.getElementById("randomResult").textContent = Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-
-/* =====================================================
-   POMODORO
-===================================================== */
-
-let pomoInterval = null;
-
-let pomoSeconds = 1500;
-
-
-function updatePomodoro(){
-
-    const min =
-        Math.floor(
-            pomoSeconds / 60
-        );
-
-
-    const sec =
-        pomoSeconds % 60;
-
-
-    const el =
-        document.getElementById(
-            "pomodoroDisplay"
-        );
-
-
-    if(el){
-
-        el.textContent =
-            String(min).padStart(2,"0")+
-            ":"+
-            String(sec).padStart(2,"0");
-
-    }
-
-}
-
-
-function startPomodoro(){
-
-    if(pomoInterval)return;
-
-
-    pomoInterval =
-        setInterval(()=>{
-
-            pomoSeconds--;
-
-            updatePomodoro();
-
-
-            if(pomoSeconds <= 0){
-
-                clearInterval(
-                    pomoInterval
-                );
-
-                pomoInterval = null;
-
-                alert(
-                    "🍅 Pomodoro complete!"
-                );
-
-            }
-
-        },1000);
-
-}
-
-
-function resetPomodoro(){
-
-    clearInterval(pomoInterval);
-
-    pomoInterval = null;
-
-    pomoSeconds = 1500;
-
-    updatePomodoro();
-
-}
-
-
-/* =====================================================
-   QR
-===================================================== */
-
-function generateQR(){
-
-    const text =
-        document
-        .getElementById("qrText")
-        .value
-        .trim();
-
-
-    const result =
-        document.getElementById(
-            "qrResult"
-        );
-
-
-    if(!text){
-
-        result.innerHTML =
-            "<p style='color:var(--muted)'>Enter text first.</p>";
-
-        return;
-    }
-
-
-    result.innerHTML = `
-
-    <div style="
-    width:180px;
-    height:180px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#fff;
-    color:#000;
-    border-radius:10px;
-    font-size:45px;">
-
-        ▦ ▦ ▦
-        <br>
-        ▦ ▦ ▦
-        <br>
-        ▦ ▦ ▦
-
-    </div>
-
-    <p style="margin-top:15px;">
-        QR Preview
-    </p>
-
-    `;
-
-}
-
-
-/* =====================================================
-   TEXT COUNTER
-===================================================== */
 
 function updateTextCount(){
-
-    const text =
-        document
-        .getElementById(
-            "counterText"
-        )
-        .value;
-
-
-    document
-    .getElementById(
-        "charCount"
-    )
-    .textContent =
-        text.length;
-
-
-    const words =
-        text.trim()
-        ? text.trim().split(/\s+/).length
-        : 0;
-
-
-    document
-    .getElementById(
-        "wordCount"
-    )
-    .textContent = words;
-
+    const text = document.getElementById("counterText").value;
+    document.getElementById("charCount").textContent = text.length;
+    document.getElementById("wordCount").textContent = text.trim() ? text.trim().split(/\s+/).length : 0;
 }
-
-
-/* =====================================================
-   AGE
-===================================================== */
 
 function calculateAge(){
-
-    const value =
-        document
-        .getElementById(
-            "birthDate"
-        )
-        .value;
-
-
-    if(!value)return;
-
-
-    const birth =
-        new Date(value);
-
-
-    const today =
-        new Date();
-
-
-    let age =
-        today.getFullYear() -
-        birth.getFullYear();
-
-
-    const month =
-        today.getMonth() -
-        birth.getMonth();
-
-
-    if(
-        month < 0 ||
-        (
-            month === 0 &&
-            today.getDate() <
-            birth.getDate()
-        )
-    ){
-
-        age--;
-
-    }
-
-
-    document
-    .getElementById(
-        "ageResult"
-    )
-    .textContent =
-        "You are " +
-        age +
-        " years old.";
-
+    const val = document.getElementById("birthDate").value;
+    if(!val) return;
+    const birth = new Date(val), today = new Date();
+    let age = today.getFullYear() - birth.getFullYear();
+    const m = today.getMonth() - birth.getMonth();
+    if(m < 0 || (m === 0 && today.getDate() < birth.getDate())) age--;
+    document.getElementById("ageResult").textContent = `You are ${age} years old.`;
 }
-
-
-/* =====================================================
-   CLOCK
-===================================================== */
 
 function updateClock(){
-
-    const el =
-        document.getElementById(
-            "liveClock"
-        );
-
-
-    if(!el)return;
-
-
-    const now =
-        new Date();
-
-
-    el.textContent =
-        now.toLocaleTimeString();
-
+    const el = document.getElementById("liveClock");
+    if(el) el.textContent = new Date().toLocaleTimeString();
 }
-
-
-setInterval(
-    updateClock,
-    1000
-);
-
-
-/* =====================================================
-   CONVERTER
-===================================================== */
+setInterval(updateClock, 1000);
 
 function convertKM(){
-
-    const km =
-        parseFloat(
-            document.getElementById(
-                "kmValue"
-            ).value
-        ) || 0;
-
-
-    document
-    .getElementById(
-        "meterResult"
-    )
-    .textContent =
-        (km*1000).toFixed(2);
-
-
-    document
-    .getElementById(
-        "mileResult"
-    )
-    .textContent =
-        (km*0.621371).toFixed(4);
-
+    const km = parseFloat(document.getElementById("kmValue").value) || 0;
+    document.getElementById("meterResult").textContent = (km * 1000).toFixed(2);
+    document.getElementById("mileResult").textContent = (km * 0.621371).toFixed(4);
 }
-
-
-/* =====================================================
-   TOOL SEARCH
-===================================================== */
 
 function globalSearch(){
-
-    const value =
-        document
-        .getElementById(
-            "globalSearch"
-        )
-        .value
-        .toLowerCase();
-
-
-    document
-    .querySelectorAll(
-        "#allTools .toolCard"
-    )
-    .forEach(card=>{
-
-        const name =
-            card.dataset.name ||
-            "";
-
-
-        card.style.display =
-            name.includes(value)
-            ? "block"
-            : "none";
-
+    const val = document.getElementById("globalSearch").value.toLowerCase();
+    document.querySelectorAll("#allTools .toolCard").forEach(card => {
+        const name = card.dataset.name || "";
+        card.style.display = name.includes(val) ? "block" : "none";
     });
-
 }
-
-
-/* =====================================================
-   CLEAR ALL DATA
-===================================================== */
 
 function clearAllData(){
-
-    const yes =
-        confirm(
-            "Delete ALL local accounts, notes, tasks, PINs and settings?"
-        );
-
-
-    if(!yes)return;
-
-
+    if(!confirm("Delete ALL local accounts, notes, tasks, PINs and settings?")) return;
     localStorage.clear();
-
     sessionStorage.clear();
-
     location.reload();
-
 }
 
-
-/* =====================================================
-   ESCAPE HTML
-===================================================== */
-
-function escapeHTML(text){
-
-    return String(text)
-
-    .replaceAll(
-        "&",
-        "&amp;"
-    )
-
-    .replaceAll(
-        "<",
-        "&lt;"
-    )
-
-    .replaceAll(
-        ">",
-        "&gt;"
-    )
-
-    .replaceAll(
-        '"',
-        "&quot;"
-    )
-
-    .replaceAll(
-        "'",
-        "&#039;"
-    );
-
+function escapeHTML(str){
+    return String(str).replace(/[&<>'"]/g, tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag));
 }
-
-
-/* =====================================================
-   IMPORTANT:
-   ALWAYS START AT LOGIN ON NEW PAGE LOAD
-===================================================== */
 
 function initializeApp(){
-
-    /*
-       We intentionally DO NOT automatically open
-       the dashboard from localStorage.
-
-       First visit:
-       Login / Sign Up
-
-       Returning visit:
-       Login
-
-       After successful login:
-       PIN if configured
-    */
-
     currentUser = null;
-
-
-    document
-    .getElementById("authScreen")
-    .classList.remove("hidden");
-
-
-    document
-    .getElementById("pinGate")
-    .classList.add("hidden");
-
-
-    document
-    .getElementById("app")
-    .classList.add("hidden");
-
-
+    document.getElementById("authScreen").classList.remove("hidden");
+    document.getElementById("pinGate").classList.add("hidden");
+    document.getElementById("app").classList.add("hidden");
     showLogin();
-
 }
 
-
 initializeApp();
-
 </script>
-
 </body>
 </html>
